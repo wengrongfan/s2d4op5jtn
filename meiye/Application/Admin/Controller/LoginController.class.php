@@ -24,7 +24,6 @@ class LoginController extends Controller {
 			$admin_username=I('admin_username');
 			$admin_pwd=md5(I('admin_pwd'));
 			$verfity_code = I('verfity');
-
 			$Verify = new \Think\Verify();
 			
 			$admin=M('admin')->where(array('admin_username'=>$admin_username,'admin_pwd'=>$admin_pwd))->find();
