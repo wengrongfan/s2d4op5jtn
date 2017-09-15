@@ -364,8 +364,10 @@ return false;
                                             <script src="/Public/ueditor/ueditor.all.js" type="text/javascript"></script>
 											<textarea name="column_content" rows="100%" style="width:100%" id="myEditor"><?php echo ($column["column_content"]); ?></textarea>  
 											<script type="text/javascript"> 
-                                                var editor = new UE.ui.Editor(); 
-                                                editor.render("myEditor"); 
+                                                var ue = UE.getEditor('myEditor',{
+													initialFrameHeight:350,//设置编辑器高度
+													scaleEnabled:true
+												}); 
                                             </script>
 										</div>
 									</div>

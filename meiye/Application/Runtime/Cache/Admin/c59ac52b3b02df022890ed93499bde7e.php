@@ -282,8 +282,9 @@ return false;
 																	<i class="ace-icon fa fa-plus-circle bigger-130"></i></a><?php endif; ?>
 																<a class="green" href="<?php echo U('news_columnedit',array('c_id'=>$v['c_id']));?>" title="修改">
 																	<i class="ace-icon fa fa-pencil bigger-130"></i></a>
-																<a class="red" href="javascript:;" onclick="return del(<?php echo ($v["c_id"]); ?>);" title="删除">
-																	<i class="ace-icon fa fa-trash-o bigger-130"></i></a></div></td>
+																<?php if($v[column_leftid] != 0): ?><a class="red" href="javascript:;" onclick="return del(<?php echo ($v["c_id"]); ?>);" title="删除">
+																	<i class="ace-icon fa fa-trash-o bigger-130"></i></a><?php endif; ?>
+																</div></td>
 													</tr><?php endforeach; endif; ?>   
                                                   <tr>
 													  <td align="left"><button  id="btnorder" class="btn btn-white btn-yellow btn-sm">排序</button></td>

@@ -13,7 +13,6 @@ class NewsController extends AuthController {
     	$keytype=I('keytype',news_title);
     	$key=I('key');
     	$opentype_check=I('opentype_check','');
-    	$diyflag=I('diyflag','');
     	//查询：时间格式过滤
     	$sldate=I('reservation','');//获取格式 2015-11-12 - 2015-11-18
     	$arr = explode(" - ",$sldate);//转换成数组
@@ -26,9 +25,6 @@ class NewsController extends AuthController {
     	$map['news_open']= array('eq',$opentype_check);
     	}
     	$map['news_time'] = array(array('egt',$arrdateone),array('elt',$arrdatetwo),'AND');
-    	if ($diyflag){
-    		$map[] ="FIND_IN_SET('$diyflag',news_flag)";
-    	}
     	if ($_SESSION['aid']!=1){
     		$map['news_adminid']= array('eq',$_SESSION['aid']);
     	}
@@ -37,14 +33,11 @@ class NewsController extends AuthController {
     	$Page= new \Think\Page($count,C('DB_PAGENUM'));// 实例化分页类 传入总记录数和每页显示的记录数
     	$show= $Page->show();// 分页显示输出
     	$news=$news_list->where($map)->limit($Page->firstRow.','.$Page->listRows)->order('news_time desc')->relation(true)->select();
-    	$diyflag_list=M('diyflag')->select();//文章属性数据
 
     	$this->assign('opentype_check',$opentype_check);
     	$this->assign('keytype',$keytype);
     	$this->assign('keyy',$key);
     	$this->assign('sldate',$sldate);
-    	$this->assign('diyflag_check',$diyflag);
-    	$this->assign('diyflag',$diyflag_list);
     	$this->assign('news',$news);
     	$this->assign('page',$show);
 		$this->display();
@@ -53,15 +46,10 @@ class NewsController extends AuthController {
     //添加文章
     public function news_listadd(){
     	$column=M('column');
-		$diyflag=M('diyflag');
     	$nav = new \Org\Util\Leftnav;
     	$column_next=$column->where('column_type <> 5 and column_type <> 2')-> order('column_order') -> select();
-		$diyflag=$diyflag->select();
     	$arr = $nav::column($column_next);
-    	$source=M('source')->select();
-    	$this->assign('source',$source);
     	$this->assign('column',$arr);
-		$this->assign('diyflag',$diyflag);
     	$this->display();
     }
     
@@ -84,9 +72,9 @@ class NewsController extends AuthController {
     				if($info) {
     					foreach($info as $file){
     						if ($file['key']=='pic_one'){//单图路径数组
-    							$img_url='/uploads/'.$file[savepath].$file[savename];//如果上传成功则完成路径拼接
+    							$img_url='/uploads/'.$file['savepath'].$file['savename'];//如果上传成功则完成路径拼接
     						}else{
-    							$picall='/uploads/'.$file[savepath].$file[savename];//如果上传成功则完成路径拼接
+    							$picall='/uploads/'.$file['savepath'].$file['savename'];//如果上传成功则完成路径拼接
     							$picall_url=$picall.','.$picall_url;
     						}
     					}
@@ -94,24 +82,14 @@ class NewsController extends AuthController {
     					$this->error($upload->getError());//否则就是上传错误，显示错误原因
     				}
     			}
-    			 
-    			//获取文章属性
-    			$news_flag=I('news_flag');
-    			$flag=array();
-    			foreach ($news_flag as $v){
-    				$flag[]=$v[0];
-    			}
-    			$flagdata=implode(',',$flag);
 
     			$sl_data=array(
     					'news_title'=>I('news_title'),
     					'news_titleshort'=>I('news_titleshort'),
     					'news_columnid'=>I('news_columnid'),
-    					'news_flag'=>$flagdata,
     					'news_zaddress'=>I('news_zaddress'),
     					'news_key'=>I('news_key'),
     					'news_tag'=>I('news_key'),
-    					'news_source'=>I('news_source'),
     					'news_pic_type'=>I('news_pic_type'),
     					'news_pic_content'=>I('news_pic_content'),
     					'news_pic_allurl'=>$picall_url,//多图路径
@@ -120,18 +98,14 @@ class NewsController extends AuthController {
     					'news_img'=>$img_url,
     					 
     					'news_open'=>I('news_open'),
-    					'news_scontent'=>I('news_scontent'),
+                        'news_content' => I('news_content'),
+    					'news_scontent'=>I('news_scontent'),//简介
     					'news_auto'=>$_SESSION['admin_realname'],
     					'news_time'=>time(),
     					'news_hits'=>200,
     			);
     			 
     			$res=$news->add($sl_data);//保存并且获取ID
-    			$sl_content=array(
-    					'news_content_nid'=>$res,
-    					'news_content_body'=>I('news_content'),
-    			);
-    			M('news_content')->field('news_content_nid,news_content_body')->add($sl_content);
     			$this->success('文章添加成功,返回列表页',U('news_list'),1);
     		}
 
@@ -181,14 +155,6 @@ class NewsController extends AuthController {
     			$sll_data=array(
     					'n_id'=>I('n_id'),
     			);
-    			
-    			//获取文章属性
-    			$news_flag=I('news_flag');
-    			$flag=array();
-    			foreach ($news_flag as $v){
-    				$flag[]=$v[0];
-    			}
-    			$flagdata=implode(',',$flag);
     			 
     			
     			$sl_data=array(
@@ -196,27 +162,21 @@ class NewsController extends AuthController {
     					'news_title'=>I('news_title'),
     					'news_titleshort'=>I('news_titleshort'),
     					'news_columnid'=>I('news_columnid'),
-    					'news_flag'=>$flagdata,
     					'news_zaddress'=>I('news_zaddress'),
     					'news_key'=>I('news_key'),
     					'news_tag'=>I('news_key'),
-    					'news_source'=>I('news_source'),
     					'news_pic_type'=>I('news_pic_type'),
     					'news_pic_content'=>I('news_pic_content'),
     					'news_open'=>I('news_open'),
-    					'news_scontent'=>I('news_scontent'),
+                        'news_content' => I('news_content'),
+    					'news_scontent' => I('news_scontent'),
     			);
     			if ($checkpic!=$oldcheckpic){
     				$sl_data['news_img']=$img_url;
     			}
     			$sl_data['news_pic_allurl']=$picall_list;
     			$news->save($sl_data);
-    			 
-    			$sl_content=array(
-    					'news_content_id'=>I('news_content_id'),
-    					'news_content_body'=>I('news_content'),
-    			);
-    			M('news_content')->save($sl_content);
+
     			$this->success('文章修改成功,返回列表页',U('news_list'),1);
     			
     			
@@ -268,7 +228,6 @@ class NewsController extends AuthController {
     	$keytype=I('keytype',news_title);
     	$key=I('key');
     	$opentype_check=I('opentype_check','');
-    	$diyflag=I('diyflag','');
     	//查询：时间格式过滤
     	$sldate=I('reservation','');//获取格式 2015-11-12 - 2015-11-18
     	$arr = explode(" - ",$sldate);//转换成数组
@@ -281,9 +240,6 @@ class NewsController extends AuthController {
     	$map['news_open']= array('eq',$opentype_check);
     	}
     	$map['news_time'] = array(array('egt',$arrdateone),array('elt',$arrdatetwo),'AND');
-    	if ($diyflag){
-    		$map[] ="FIND_IN_SET('$diyflag',news_flag)";
-    	}
     	if ($_SESSION['aid']!=1){
     		$map['news_adminid']= array('eq',$_SESSION['aid']);
     	}
@@ -292,13 +248,10 @@ class NewsController extends AuthController {
     	$Page= new \Think\Page($count,C('DB_PAGENUM'));// 实例化分页类 传入总记录数和每页显示的记录数
     	$show= $Page->show();// 分页显示输出
     	$news=$news_list->where($map)->limit($Page->firstRow.','.$Page->listRows)->order('news_time desc')->relation(true)->select();
-    	$diyflag_list=M('diyflag')->select();//文章属性数据
     	$this->assign('opentype_check',$opentype_check);
     	$this->assign('keytype',$keytype);
     	$this->assign('keyy',$key);
     	$this->assign('sldate',$sldate);
-    	$this->assign('diyflag_check',$diyflag);
-    	$this->assign('diyflag',$diyflag_list);
     	$this->assign('news',$news);
     	$this->assign('page',$show);
 		$this->display();
@@ -376,19 +329,11 @@ class NewsController extends AuthController {
 			$this->assign('pic_list',$pic_list);
 			
 			$column=M('column');
-			$diyflag=M('diyflag');
 			$nav = new \Org\Util\Leftnav;
 			$column_next=$column->where('column_type <> 5 and column_type <> 2')-> order('column_order') -> select();
-			$diyflag=$diyflag->select();
 			$arr = $nav::column($column_next);
-			$source=M('source')->select();//来源
-			$this->assign('source',$source);
-			
-			$news_content=M('news_content')->where(array('news_content_nid'=>$n_id))->find();
-			$this->assign('news_content',$news_content);
 			
 			$this->assign('column',$arr);
-			$this->assign('diyflag',$diyflag);
 			$this->assign('news_list',$news_list);
 			$this->display();
 		}

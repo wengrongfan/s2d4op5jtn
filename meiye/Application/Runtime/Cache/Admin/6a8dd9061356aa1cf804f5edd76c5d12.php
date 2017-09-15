@@ -259,7 +259,7 @@ return false;
 								您当前操作
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									添加文章
+									修改文章
 								</small>
 							</h1>
 						</div>
@@ -267,14 +267,15 @@ return false;
 
 						<div class="row">
 							<div class="col-xs-12">
-								<form class="form-horizontal" name="form0" id="form0"  method="post" action="<?php echo U('news_runadd');?>"  enctype="multipart/form-data">
+								<form class="form-horizontal" name="form0" id="form0" method="post" action="<?php echo U('news_runedit');?>"  enctype="multipart/form-data">
+								<input type="hidden" name="n_id" id="n_id" value="<?php echo ($news_list["n_id"]); ?>" />
 														
                                 	<div class="form-group">
 										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 文章所属主栏目： </label>
 										<div class="col-sm-10">
-                                        <select name="news_columnid"  class="col-sm-3 selector">
+                                        <select name="news_columnid"  class="col-sm-3 " >
                                         <option value="">请选择所属栏目</option>
-                                        <?php if(is_array($column)): foreach($column as $key=>$vo): ?><option value="<?php echo ($vo["c_id"]); ?>" <?php if($vo["column_type"] == 1): ?>disabled class="bgccc"<?php else: ?>class="bgc"<?php endif; ?>><?php echo ($vo["lefthtml"]); echo ($vo["column_name"]); ?> <?php if($vo["column_type"] == 1): ?>(频道页)<?php endif; ?></option><?php endforeach; endif; ?>
+                                        <?php if(is_array($column)): foreach($column as $key=>$vo): ?><option value="<?php echo ($vo["c_id"]); ?>"  <?php if($vo["c_id"] == $news_list['news_columnid']): ?>selected<?php endif; ?> <?php if($vo["column_type"] == 1): ?>disabled class="bgccc"<?php else: ?>class="bgc"<?php endif; ?>><?php echo ($vo["lefthtml"]); echo ($vo["column_name"]); ?> <?php if($vo["column_type"] == 1): ?>(频道页)<?php endif; ?></option><?php endforeach; endif; ?>
                                         </select>
                                         </div>
 									</div>
@@ -283,8 +284,8 @@ return false;
                                 	<div class="form-group">
 										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 文章名称：  </label>
 										<div class="col-sm-10">
-											<input type="text" name="news_title" id="news_title"  placeholder="必填：文章标题"  class="col-xs-10 col-sm-6"/>
-											 <input type="text" name="news_titleshort" id="news_titleshort"  placeholder="简短标题，建议6~12字数"  class="col-xs-10 col-sm-4" style="margin-left:10px;" />
+											<input type="text" name="news_title" id="news_title"  value="<?php echo ($news_list["news_title"]); ?>"   class="col-xs-10 col-sm-6"/>
+											 <input type="text" name="news_titleshort" id="news_titleshort"  value="<?php echo ($news_list["news_titleshort"]); ?>" placeholder="简短标题，建议6~12字数" class="col-xs-10 col-sm-4" style="margin-left:10px;" />
                                             <span class="help-inline col-xs-12 col-sm-7">
 												<span class="middle" id="resone"></span>
 											</span>
@@ -295,7 +296,7 @@ return false;
 									<div class="form-group" id="pptaddress">
 										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 跳转地址：  </label>
 										<div class="col-sm-10">
-											<input type="text" name="news_zaddress" id="news_zaddress" placeholder="跳转地址" class="col-xs-10 col-sm-7" />
+											<input type="text" name="news_zaddress" id="news_zaddress"  value="<?php echo ($news_list["news_zaddress"]); ?>"   placeholder="输入页面跳转地址" class="col-xs-10 col-sm-7" />
                                             <span class="help-inline col-xs-12 col-sm-5">
 												<span class="middle">正确格式：http:// 开头</span>
 											</span>
@@ -306,7 +307,7 @@ return false;
 									<div class="form-group">
 										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 文章关键字：  </label>
 										<div class="col-sm-10">
-											<input type="text" name="news_key" id="news_key" placeholder="输入文章关键字，以英文,逗号隔开" class="col-xs-10 col-sm-6" />
+											<input type="text" name="news_key" id="news_key"  value="<?php echo ($news_list["news_key"]); ?>"  placeholder="输入文章关键字，以英文,逗号隔开" class="col-xs-10 col-sm-6" />
 										</div>
 									</div>
                                     <div class="space-4"></div>
@@ -314,39 +315,41 @@ return false;
 									<div class="form-group">
 										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 封面图片上传： </label>
 										<div class="col-sm-10">
-										<a href="javascript:;" class="file">
-                                          <input type="file" name="pic_one[]" id="file0" />
+											<input type="hidden" name="checkpic" id="checkpic" value="/Public<?php echo ($news_list["news_img"]); ?>" />
+											<input type="hidden" name="oldcheckpic" id="oldcheckpic" value="/Public<?php echo ($news_list["news_img"]); ?>" />
+										<a href="javascript:;" class="file" title="点击选择所要上传的图片">
+                                            <input type="file" name="pic_one[]" id="file0" multiple="multiple"/>
 											选择上传文件
 										</a>
-											<span class="lbl">&nbsp;&nbsp;<img src="/Public/img/no_img.jpg" width="100" height="70" id="img0" ></span>&nbsp;&nbsp;<a href="javascript:;" onClick="return backpic('/Public/img/no_img.jpg');" title="还原修改前的图片" class="file">
-                                            撤销上传
+											<span class="lbl">&nbsp;&nbsp;<img src="<?php if($news_list[news_img] != ''): ?>/Public<?php echo ($news_list["news_img"]); else: ?>/Public/img/no_img.jpg<?php endif; ?>" width="100" height="70" id="img0" ></span>&nbsp;&nbsp;<a href="javascript:;" onclick="return backpic('/Public<?php if($news_list["news_img"] == ''): ?>/img/no_img.jpg<?php else: echo ($news_list["news_img"]); endif; ?>');" title="还原修改前的图片" class="file">
+                                            撤销修改
 										</a>
 											<span class="lbl">&nbsp;&nbsp;上传前先用PS处理成等比例图片后上传，默认比例100*70、600*420、800*560像素<br />
 </span>
 										</div>
 									</div>
                                     <div class="space-4"></div>
-
-
+									
                                     <input name="news_pic_type" id="news_pic_list" checked type="hidden" class="ace" value="1"/>
 									<!-- <div class="form-group">
 										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 文章显示模式： </label>
 										<div class="col-sm-10">
                                             <div class="radio" >
 													<label>
-														<input name="news_pic_type" id="news_pic_list" checked type="hidden" class="ace" value="1"/>
+														<input name="news_pic_type" <?php if($news_list[news_pic_type] == 1): ?>checked<?php endif; ?> id="news_pic_list" checked type="radio" class="ace" value="1"/>
 														<span class="lbl"> 普通模式</span>
 													</label>
 													<label>
-														<input name="news_pic_type" id="news_pic_qqlist" type="radio" class="ace" value="2"/>
-														<span class="lbl"> 多图模式</span>
+														<input name="news_pic_type" <?php if($news_list[news_pic_type] == 2): ?>checked<?php endif; ?> id="news_pic_qqlist" type="radio" class="ace" value="2"/>
+														<span class="lbl"> 腾讯模式</span>
 													</label>
-												</div>
+													<?php if($news_list[news_pic_type] == 2): ?><label>
+														<span class="btn btn-minier btn-success"  data-toggle="modal" data-target="#myModal">查看已上传的图片</span>
+													</label><?php endif; ?>
+										  </div>
 										</div>
 									</div>
                                     <div class="space-4"></div> -->
-
-
 
 
 
@@ -357,29 +360,27 @@ return false;
 
 
 
-									<div class="form-group" id="pic_list">
+									<div class="form-group" id="pic_list" <?php if($news_list[news_pic_type] == 1): ?>style="display:none"<?php endif; ?>>
 										<div class="col-sm-12" style="padding-top:5px;">
                                           <input id="file-5" name="pic_all[]" type="file" class="file"  multiple data-preview-file-type="any" data-upload-url="#" data-preview-file-icon=""><br />
-										  <textarea name="news_pic_content" class="col-xs-12 col-sm-12" id="news_pic_content"  placeholder="多图对应文章说明，例如： 图片一说明 | 图片二说明 | 图片三说明    每个文字说明以 | 分割" ></textarea>
+										  <textarea name="news_pic_content" class="col-xs-12 col-sm-12" id="news_pic_content"  placeholder="多图对应文章说明，例如： 图片一说明 | 图片二说明 | 图片三说明    每个文字说明以 | 分割" ><?php echo ($news_list['news_pic_content']); ?></textarea>
 										</div>
 									</div>
                                     <div class="space-4"></div>
 
 
+				<!--老多图字符串-->		
+				<input name="pic_oldlist" type="hidden" id="pic_oldlist" type="text" size="130" value="<?php echo ($news_list["news_pic_allurl"]); ?>" >
 
 
 
 
 
-
-
-
-							
-		
+									
 									<div class="form-group">
 										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 是否审核： </label>
 										<div class="col-sm-10" style="padding-top:5px;">
-                                            <input name="news_open" id="news_open" value="1" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox" />
+                                            <input name='news_open' id='news_open' <?php if($news_list[news_open] == 1): ?>checked<?php endif; ?>  value='1' class='ace ace-switch ace-switch-4 btn-flat' type='checkbox' />
 											<span class="lbl">&nbsp;&nbsp;默认关闭</span>
 										</div>
 									</div>
@@ -388,7 +389,7 @@ return false;
 									<div class="form-group">
 										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 文章简介： </label>
 										<div class="col-sm-9">
-											<input type="text" name="news_scontent" id="news_scontent" class="col-xs-10 col-sm-10"  maxlength="50" />
+											<input type="text" name="news_scontent" id="news_scontent" class="col-xs-10 col-sm-10"  maxlength="50" value="<?php echo ($news_list["news_scontent"]); ?>"  placeholder="输入文章简介"  />
 											<label class="input_last">已限制在50个字以内</label>
 										</div>
 									</div>
@@ -399,7 +400,8 @@ return false;
 										<div class="col-sm-10">
 											<script src="/Public/ueditor/ueditor.config.js" type="text/javascript"></script>
                                             <script src="/Public/ueditor/ueditor.all.js" type="text/javascript"></script>
-											<textarea name="news_content" rows="100%" style="width:100%" id="myEditor"></textarea>  
+											<input type="hidden" name="news_content_id" value="<?php echo ($news_content["news_content_id"]); ?>" />
+											<textarea name="news_content" rows="100%" style="width:100%" id="myEditor"><?php echo ($news_list["news_content"]); ?></textarea>  
 											<script type="text/javascript"> 
                                                 var ue = UE.getEditor('myEditor',{
 													initialFrameHeight:350,//设置编辑器高度
@@ -511,18 +513,19 @@ return false;
 
 		</div><!-- /.main-container -->
 
+
 	</body>
 </html>
 <script>
 function backpic(picurl){
 	$("#img0").attr("src",picurl);//还原修改前的图片
 	$("input[name='file0']").val("");//清空文本框的值
+	$("input[name='oldcheckpic']").val(picurl);//清空文本框的值
 }
 
 $(document).ready(function(){
 
-//多图设置
-  $("#pic_list").hide();
+
   $("#news_pic_list").click(function(){
   	$("#pic_list").hide();
   });
@@ -530,12 +533,24 @@ $(document).ready(function(){
   	$("#pic_list").show();
   });
   
+  
   $("#pptaddress").hide();
   $("#news_flag_vaj").click(function(){
     $("#pptaddress").toggle(500);
   });
+  
+
 });
 
+$(function(){
+	$('#address').hide();//默认隐藏
+	$('#type2').click(function(){
+		$('#address').show();
+	});	
+	$('#type1,#type3,#type4,#type5').click(function(){
+		$('#address').hide();
+	});	
+});
 
 $(function(){
 	$('#form0').ajaxForm({
@@ -545,14 +560,6 @@ $(function(){
 	});
 	
 	function checkForm(){
-		if( '' == $(".selector").val()){
-			layer.alert('文章所属栏目不能为空', {icon: 6}, function(index){
- 			layer.close(index);
-			$('.selector').focus(); 
-			});
-			return false;
-		}
-	
 		if( '' == $.trim($('#news_title').val())){
 			layer.alert('文章标题不能为空', {icon: 6}, function(index){
  			layer.close(index);
@@ -568,15 +575,14 @@ $(function(){
 			window.location.href=data.url;
 			});
 		}else{
-			layer.alert(data.info, {icon: 6}, function(index){
- 			layer.close(index);
-			window.location.href=data.url;
-			});
+			alert(data.info);
+			return false;	
 		}
 	}
  
 });
-
+</script>
+<script>	
 $("#file0").change(function(){
 	var objUrl = getObjectURL(this.files[0]) ;
 	console.log("objUrl = "+objUrl) ;
@@ -589,19 +595,87 @@ function getObjectURL(file) {
 	var url = null ; 
 	if (window.createObjectURL!=undefined) { // basic
 	$("#news_flag_vap").attr("checked", true);
+	$("#oldcheckpic").val("nopic");
 		url = window.createObjectURL(file) ;
 	} else if (window.URL!=undefined) { // mozilla(firefox)
 	$("#news_flag_vap").attr("checked", true);
+	$("#oldcheckpic").val("nopic");
 		url = window.URL.createObjectURL(file) ;
 	} else if (window.webkitURL!=undefined) { // webkit or chrome
 		$("#news_flag_vap").attr("checked", true);
+		$("#oldcheckpic").val("nopic");
 		url = window.webkitURL.createObjectURL(file) ;
 	}
 	return url ;
 }
-//来源
-function souadd(val){
-	$('#news_source').val(val);
-}
+</script>
 
+
+<!-- 显示模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog" style="width:80%">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" 
+               aria-hidden="true">×
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               操作已上传的多图
+            </h4>
+         </div>
+         <div class="modal-body">
+            
+			
+						<div class="row">
+							<div class="col-xs-12">
+
+																		
+									<div class="form-group">
+										<div class="col-sm-10">
+											<ul>
+											<?php if(is_array($pic_list)): $i = 0; $__LIST__ = $pic_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><div class="file-preview-frame" data-fileindex="0" id="id<?php echo ($i); ?>">
+   <img src="/Public<?php echo ($v); ?>" class="file-preview-image" style="width:auto;height:160px;">
+   <div class="file-thumbnail-footer">
+    <div class="file-actions">
+    <div class="file-footer-buttons">
+       <a class="red" href="javascript:;" onclick="return delall(<?php echo ($i); ?>,'<?php echo ($v); ?>');" title="回收站">
+				<i class="ace-icon fa fa-trash-o bigger-130"></i>
+		</a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+</div>
+</div><?php endforeach; endif; else: echo "" ;endif; ?>
+											</ul>
+										</div>
+									</div>
+									
+                                    <div class="space-4"></div>
+							</div>
+						</div>
+
+
+			
+			
+			
+         </div>
+         <div class="modal-footer">
+		 	<button class="btn btn-primary">
+            	若想取消修改，请刷新当前页面
+            </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+				关闭
+            </button>
+         </div>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+function delall(id,url){
+	$('#id'+id).hide();
+	var str=$('#pic_oldlist').val();//最原始的完整路径
+	var surl=url+',';
+	var pic_newold=str.replace(surl,"");
+	$('#pic_oldlist').val(pic_newold);
+}
 </script>

@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2017 at 12:18 PM
--- Server version: 5.7.14
+-- Generation Time: 2017-09-15 07:16:58
+-- 服务器版本： 5.7.14
 -- PHP Version: 7.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `meiye`
+-- Database: `yunxu`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mr_admin`
+-- 表的结构 `mr_admin`
 --
 
 CREATE TABLE `mr_admin` (
@@ -41,17 +41,17 @@ CREATE TABLE `mr_admin` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mr_admin`
+-- 转存表中的数据 `mr_admin`
 --
 
 INSERT INTO `mr_admin` (`admin_id`, `admin_username`, `admin_pwd`, `admin_email`, `admin_realname`, `admin_tel`, `admin_hits`, `admin_ip`, `admin_addtime`, `admin_mdemail`, `admin_open`) VALUES
-(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1023102176@qq.com', 'Tot ziens', '18819489576', 246, '127.0.0.1', 112222233, '206125c6e7523ba7c0301144ac24eea9', 1),
+(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1023102176@qq.com', 'Tot ziens', '18819489576', 247, '127.0.0.1', 112222233, '206125c6e7523ba7c0301144ac24eea9', 1),
 (2, 'test', 'e10adc3949ba59abbe56e057f20f883e', '1023102176@qq.com', 'test', '18819489689', 25, '127.0.0.1', 1446683501, '206125c6e7523ba7c0301144ac24eea9', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mr_auth_group`
+-- 表的结构 `mr_auth_group`
 --
 
 CREATE TABLE `mr_auth_group` (
@@ -63,7 +63,7 @@ CREATE TABLE `mr_auth_group` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mr_auth_group`
+-- 转存表中的数据 `mr_auth_group`
 --
 
 INSERT INTO `mr_auth_group` (`id`, `title`, `status`, `rules`, `addtime`) VALUES
@@ -73,7 +73,7 @@ INSERT INTO `mr_auth_group` (`id`, `title`, `status`, `rules`, `addtime`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mr_auth_group_access`
+-- 表的结构 `mr_auth_group_access`
 --
 
 CREATE TABLE `mr_auth_group_access` (
@@ -82,7 +82,7 @@ CREATE TABLE `mr_auth_group_access` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mr_auth_group_access`
+-- 转存表中的数据 `mr_auth_group_access`
 --
 
 INSERT INTO `mr_auth_group_access` (`uid`, `group_id`) VALUES
@@ -93,7 +93,7 @@ INSERT INTO `mr_auth_group_access` (`uid`, `group_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mr_auth_rule`
+-- 表的结构 `mr_auth_rule`
 --
 
 CREATE TABLE `mr_auth_rule` (
@@ -114,7 +114,7 @@ CREATE TABLE `mr_auth_rule` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mr_auth_rule`
+-- 转存表中的数据 `mr_auth_rule`
 --
 
 INSERT INTO `mr_auth_rule` (`id`, `name`, `title`, `type`, `status`, `authopen`, `css`, `condition`, `pid`, `sort`, `addtime`, `zt`, `menustatus`, `level`) VALUES
@@ -137,7 +137,7 @@ INSERT INTO `mr_auth_rule` (`id`, `name`, `title`, `type`, `status`, `authopen`,
 (31, 'Plug/plug_link_list', '友情链接', 1, 1, 0, '', '', 28, 50, 1447232183, 0, 1, 3),
 (32, 'Plug/plug_link_list', '链接列表', 1, 1, 0, '', '', 31, 50, 1447639935, 0, 1, 3),
 (34, 'Plug/plug_linktype_list', '所属栏目', 1, 1, 0, '', '', 31, 50, 1447640839, 0, 1, 3),
-(43, 'Sys/source', '来源管理', 1, 1, 0, '', '', 2, 50, 1448940532, 1, 1, 3),
+(252, 'Media/banner_del', '删除轮播', 1, 1, 0, '', '', 250, 50, 1505454521, NULL, 0, 3),
 (105, 'Sys/runsys', '操作-保存', 1, 1, 0, '', '', 6, 50, 1461036331, 1, 0, 4),
 (108, 'Sys/admin_rule_add', '操作-添加', 1, 1, 0, '', '', 18, 0, 1461550835, 1, 0, 4),
 (109, 'Sys/admin_rule_state', '操作-状态', 1, 1, 0, '', '', 18, 5, 1461550949, 1, 0, 4),
@@ -153,10 +153,10 @@ INSERT INTO `mr_auth_rule` (`id`, `name`, `title`, `type`, `status`, `authopen`,
 (119, 'Sys/admin_list_add', '操作-添加', 1, 1, 0, '', '', 16, 0, 1461553162, 1, 0, 4),
 (120, 'Sys/admin_list_edit', '操作-修改', 1, 1, 0, '', '', 16, 2, 1461554130, 1, 0, 4),
 (121, 'Sys/admin_list_del', '操作-删除', 1, 1, 0, '', '', 16, 4, 1461554152, 1, 0, 4),
-(122, 'Sys/source_runadd', '操作-添加', 1, 1, 0, '', '', 43, 10, 1461036331, 1, 0, 4),
-(123, 'Sys/source_order', '操作-排序', 1, 1, 0, '', '', 43, 50, 1461037680, 1, 0, 4),
-(124, 'Sys/source_runedit', '操作-改存', 1, 1, 0, '', '', 43, 30, 1461039346, 1, 0, 4),
-(125, 'Sys/source_del', '操作-删除', 1, 1, 0, '', '', 43, 40, 146103934, 1, 0, 4),
+(251, 'Media/banner_add', '添加轮播', 1, 1, 0, '', '', 250, 50, 1505454491, NULL, 0, 3),
+(250, 'Media/banner_list', '轮播列表', 1, 1, 0, '', '', 248, 50, 1505454457, NULL, 1, 3),
+(249, 'Media/weixin', '微信二维码', 1, 1, 0, '', '', 247, 100, 1505454323, NULL, 1, 2),
+(248, 'Media/banner', '首页轮播', 1, 1, 0, '', '', 247, 50, 1505454259, NULL, 1, 2),
 (126, 'Sys/export', '操作-备份', 1, 1, 0, '', '', 5, 1, 1461550835, 1, 0, 4),
 (127, 'Sys/optimize', '操作-优化', 1, 1, 0, '', '', 5, 1, 1461550835, 1, 0, 4),
 (128, 'Sys/repair', '操作-修复', 1, 1, 0, '', '', 5, 1, 1461550835, 1, 0, 4),
@@ -190,13 +190,14 @@ INSERT INTO `mr_auth_rule` (`id`, `name`, `title`, `type`, `status`, `authopen`,
 (158, 'News/runnews_columnedit', '操作-改存', 1, 1, 0, '', '', 13, 2, 1461550835, 1, 0, 4),
 (159, 'News/news_columndel', '操作-删除', 1, 1, 0, '', '', 13, 3, 1461550835, 1, 0, 4),
 (160, 'News/column_state', '操作-状态', 1, 1, 0, '', '', 13, 4, 1461550835, 1, 0, 4),
-(180, 'Sys/source_edit', '操作-修改', 1, 1, 0, '', '', 43, 20, 1461832933, 1, 0, 4),
-(181, 'Sys/admin_group_state', '操作-状态', 1, 1, 0, '', '', 17, 50, 1461834340, 1, 0, 4);
+(247, 'Media', '媒体管理', 1, 1, 0, 'fa-film', '', 0, 50, 1505454139, NULL, 1, 1),
+(181, 'Sys/admin_group_state', '操作-状态', 1, 1, 0, '', '', 17, 50, 1461834340, 1, 0, 4),
+(253, 'Media/weixin', '二维码', 1, 1, 1, '', '', 249, 50, 1505454713, NULL, 1, 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mr_column`
+-- 表的结构 `mr_column`
 --
 
 CREATE TABLE `mr_column` (
@@ -215,44 +216,49 @@ CREATE TABLE `mr_column` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mr_column`
+-- 转存表中的数据 `mr_column`
 --
 
 INSERT INTO `mr_column` (`c_id`, `column_name`, `column_enname`, `column_type`, `column_leftid`, `column_address`, `column_open`, `column_order`, `column_title`, `column_key`, `column_des`, `column_content`) VALUES
-(1, '通知公告', '', 1, 0, '', 1, 50, '', '', '', ''),
-(2, '其它', NULL, 3, 1, '', 1, 50, '', '', '', '');
+(1, '关于云秀', '', 1, 0, '', 1, 50, '', '', '', ''),
+(2, '企业介绍', NULL, 5, 1, '', 1, 50, '', '', '', '&lt;p&gt;企业文化&lt;/p&gt;'),
+(3, '企业文化', NULL, 5, 1, '', 1, 50, '', '', '', '&lt;p&gt;&lt;span style=&quot;color: rgb(57, 57, 57); font-family: &amp;quot;Microsoft Yahei&amp;quot;; font-size: 13px; background-color: rgb(245, 245, 245);&quot;&gt;企业文化&lt;/span&gt;&lt;/p&gt;'),
+(4, '创始人', NULL, 5, 1, '', 1, 50, '', '', '', '&lt;p&gt;&lt;span style=&quot;color: rgb(57, 57, 57); font-family: &amp;quot;Microsoft Yahei&amp;quot;; font-size: 13px; background-color: rgb(245, 245, 245);&quot;&gt;创始人&lt;/span&gt;&lt;/p&gt;'),
+(6, '新闻动态', NULL, 1, 0, '', 1, 50, '', '', '', ''),
+(7, '云秀新闻', NULL, 3, 6, '', 1, 50, '', '', '', ''),
+(8, '行业动态', NULL, 4, 6, '', 1, 50, '', '', '', ''),
+(9, '云秀服务', NULL, 1, 0, '', 1, 50, '', '', '', ''),
+(10, '面部管理', NULL, 5, 9, '', 1, 50, '', '', '', '&lt;p&gt;面部管理&lt;/p&gt;'),
+(11, '形体身材管理', NULL, 5, 9, '', 1, 50, '', '', '', '&lt;p&gt;形体身材管理&lt;/p&gt;'),
+(12, '大健康产业', NULL, 5, 9, '', 1, 50, '', '', '', '&lt;p&gt;大健康产业&lt;/p&gt;'),
+(13, '联系我们', NULL, 1, 0, '', 1, 50, '', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mr_diyflag`
+-- 表的结构 `mr_media`
 --
 
-CREATE TABLE `mr_diyflag` (
-  `diyflag_id` int(2) NOT NULL COMMENT 'ID',
-  `diyflag_value` char(2) NOT NULL COMMENT '值',
-  `diyflag_name` char(10) NOT NULL COMMENT '名称',
-  `diyflag_order` int(11) NOT NULL COMMENT '排序'
+CREATE TABLE `mr_media` (
+  `id` int(11) NOT NULL,
+  `type` tinyint(4) NOT NULL COMMENT '1轮博，2微信二维码',
+  `sort` smallint(6) NOT NULL DEFAULT '1' COMMENT '排序',
+  `url_pic` varchar(200) NOT NULL COMMENT '图片地址',
+  `url_target` varchar(200) NOT NULL COMMENT '跳转目标',
+  `create_time` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mr_diyflag`
+-- 转存表中的数据 `mr_media`
 --
 
-INSERT INTO `mr_diyflag` (`diyflag_id`, `diyflag_value`, `diyflag_name`, `diyflag_order`) VALUES
-(1, 'h', '头条', 10),
-(2, 'c', '推荐', 20),
-(3, 'f', '幻灯', 30),
-(4, 'a', '特荐', 40),
-(5, 's', '滚动', 50),
-(6, 'p', '图片', 60),
-(7, 'j', '跳转', 70),
-(8, 'd', '原创', 80);
+INSERT INTO `mr_media` (`id`, `type`, `sort`, `url_pic`, `url_target`, `create_time`) VALUES
+(2, 1, 50, '/uploads/2017-09/59bb7e3b20458.png', 'http://www.baidu.com', 1505459771);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mr_member_list`
+-- 表的结构 `mr_member_list`
 --
 
 CREATE TABLE `mr_member_list` (
@@ -273,7 +279,7 @@ CREATE TABLE `mr_member_list` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mr_member_list`
+-- 转存表中的数据 `mr_member_list`
 --
 
 INSERT INTO `mr_member_list` (`member_list_id`, `member_list_username`, `member_list_pwd`, `member_list_petname`, `member_list_province`, `member_list_city`, `member_list_town`, `member_list_sex`, `member_list_headpic`, `member_list_tel`, `member_list_email`, `member_list_open`, `member_mdemail`, `member_list_addtime`) VALUES
@@ -283,7 +289,7 @@ INSERT INTO `mr_member_list` (`member_list_id`, `member_list_username`, `member_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mr_news`
+-- 表的结构 `mr_news`
 --
 
 CREATE TABLE `mr_news` (
@@ -296,7 +302,6 @@ CREATE TABLE `mr_news` (
   `news_tag` varchar(50) NOT NULL DEFAULT '' COMMENT '文章标签',
   `news_auto` varchar(20) NOT NULL COMMENT '作者',
   `news_adminid` int(11) NOT NULL COMMENT '所属管理员',
-  `news_source` varchar(20) NOT NULL DEFAULT '未知' COMMENT '来源',
   `news_content` longtext NOT NULL COMMENT '新闻内容',
   `news_scontent` varchar(100) NOT NULL DEFAULT '',
   `news_hits` int(11) NOT NULL DEFAULT '200' COMMENT '点击率',
@@ -305,17 +310,23 @@ CREATE TABLE `mr_news` (
   `news_pic_allurl` varchar(255) DEFAULT '' COMMENT '多图路径',
   `news_pic_content` longtext NOT NULL COMMENT '多图对应文字说明',
   `news_time` int(11) NOT NULL,
-  `news_flag` set('h','c','f','a','s','p','j','d') NOT NULL DEFAULT '' COMMENT '文章属性',
   `news_zaddress` varchar(100) NOT NULL DEFAULT '' COMMENT '跳转地址',
   `news_back` int(2) NOT NULL DEFAULT '0' COMMENT '是否为回收站',
   `news_open` varchar(2) DEFAULT '0' COMMENT '0代表审核不通过 1代表审核通过',
   `news_lvtype` tinyint(2) NOT NULL DEFAULT '0' COMMENT '旅游类型1=行程 2=攻略'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- 转存表中的数据 `mr_news`
+--
+
+INSERT INTO `mr_news` (`n_id`, `news_title`, `news_titleshort`, `news_columnid`, `news_columnviceid`, `news_key`, `news_tag`, `news_auto`, `news_adminid`, `news_content`, `news_scontent`, `news_hits`, `news_img`, `news_pic_type`, `news_pic_allurl`, `news_pic_content`, `news_time`, `news_zaddress`, `news_back`, `news_open`, `news_lvtype`) VALUES
+(3, 'test1', 'test1', 7, NULL, 'test1', 'test1', 'Tot ziens', 1, '&lt;p&gt;test1111&lt;img src=&quot;/Public/uploads/image/20170915/1505453626828643.jpg&quot; title=&quot;1505453626828643.jpg&quot; alt=&quot;你是gay.jpg&quot;/&gt;&lt;img src=&quot;/Public/uploads/image/20170915/1505453644636444.jpg&quot; title=&quot;1505453644636444.jpg&quot; alt=&quot;你是gay.jpg&quot;/&gt;&lt;/p&gt;', 'test1', 200, '/uploads/2017-09/59bb668283e90.jpg', 1, '', '', 1505453000, '', 0, '1', 0);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mr_news_content`
+-- 表的结构 `mr_news_content`
 --
 
 CREATE TABLE `mr_news_content` (
@@ -327,7 +338,7 @@ CREATE TABLE `mr_news_content` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mr_plug_link`
+-- 表的结构 `mr_plug_link`
 --
 
 CREATE TABLE `mr_plug_link` (
@@ -341,17 +352,10 @@ CREATE TABLE `mr_plug_link` (
   `plug_link_open` tinyint(2) NOT NULL DEFAULT '0' COMMENT '0禁用1启用'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `mr_plug_link`
---
-
-INSERT INTO `mr_plug_link` (`plug_link_id`, `plug_link_name`, `plug_link_url`, `plug_link_typeid`, `plug_link_qq`, `plug_link_order`, `plug_link_addtime`, `plug_link_open`) VALUES
-(1, '广大华软', 'http://www.sise.com.cn', 1, '', '50', 1484142174, 1);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mr_plug_linktype`
+-- 表的结构 `mr_plug_linktype`
 --
 
 CREATE TABLE `mr_plug_linktype` (
@@ -361,7 +365,7 @@ CREATE TABLE `mr_plug_linktype` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mr_plug_linktype`
+-- 转存表中的数据 `mr_plug_linktype`
 --
 
 INSERT INTO `mr_plug_linktype` (`plug_linktype_id`, `plug_linktype_name`, `plug_linktype_order`) VALUES
@@ -370,28 +374,7 @@ INSERT INTO `mr_plug_linktype` (`plug_linktype_id`, `plug_linktype_name`, `plug_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mr_source`
---
-
-CREATE TABLE `mr_source` (
-  `source_id` tinyint(5) NOT NULL,
-  `source_name` varchar(30) NOT NULL,
-  `source_order` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `mr_source`
---
-
-INSERT INTO `mr_source` (`source_id`, `source_name`, `source_order`) VALUES
-(1, '本站原创', 50),
-(2, '转载', 50),
-(3, 'slackck', 50);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `mr_sys`
+-- 表的结构 `mr_sys`
 --
 
 CREATE TABLE `mr_sys` (
@@ -404,7 +387,7 @@ CREATE TABLE `mr_sys` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mr_sys`
+-- 转存表中的数据 `mr_sys`
 --
 
 INSERT INTO `mr_sys` (`sys_id`, `sys_name`, `sys_url`, `sys_title`, `sys_key`, `sys_des`) VALUES
@@ -448,10 +431,10 @@ ALTER TABLE `mr_column`
   ADD PRIMARY KEY (`c_id`);
 
 --
--- Indexes for table `mr_diyflag`
+-- Indexes for table `mr_media`
 --
-ALTER TABLE `mr_diyflag`
-  ADD PRIMARY KEY (`diyflag_id`);
+ALTER TABLE `mr_media`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `mr_member_list`
@@ -487,76 +470,65 @@ ALTER TABLE `mr_plug_linktype`
   ADD PRIMARY KEY (`plug_linktype_id`);
 
 --
--- Indexes for table `mr_source`
---
-ALTER TABLE `mr_source`
-  ADD PRIMARY KEY (`source_id`);
-
---
 -- Indexes for table `mr_sys`
 --
 ALTER TABLE `mr_sys`
   ADD PRIMARY KEY (`sys_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- 在导出的表使用AUTO_INCREMENT
 --
 
 --
--- AUTO_INCREMENT for table `mr_admin`
+-- 使用表AUTO_INCREMENT `mr_admin`
 --
 ALTER TABLE `mr_admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '管理员ID', AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `mr_auth_group`
+-- 使用表AUTO_INCREMENT `mr_auth_group`
 --
 ALTER TABLE `mr_auth_group`
   MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `mr_auth_rule`
+-- 使用表AUTO_INCREMENT `mr_auth_rule`
 --
 ALTER TABLE `mr_auth_rule`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
 --
--- AUTO_INCREMENT for table `mr_column`
+-- 使用表AUTO_INCREMENT `mr_column`
 --
 ALTER TABLE `mr_column`
-  MODIFY `c_id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `c_id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
--- AUTO_INCREMENT for table `mr_diyflag`
+-- 使用表AUTO_INCREMENT `mr_media`
 --
-ALTER TABLE `mr_diyflag`
-  MODIFY `diyflag_id` int(2) NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=9;
+ALTER TABLE `mr_media`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `mr_member_list`
+-- 使用表AUTO_INCREMENT `mr_member_list`
 --
 ALTER TABLE `mr_member_list`
   MODIFY `member_list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `mr_news`
+-- 使用表AUTO_INCREMENT `mr_news`
 --
 ALTER TABLE `mr_news`
-  MODIFY `n_id` int(36) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `n_id` int(36) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `mr_news_content`
+-- 使用表AUTO_INCREMENT `mr_news_content`
 --
 ALTER TABLE `mr_news_content`
   MODIFY `news_content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `mr_plug_link`
+-- 使用表AUTO_INCREMENT `mr_plug_link`
 --
 ALTER TABLE `mr_plug_link`
   MODIFY `plug_link_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `mr_plug_linktype`
+-- 使用表AUTO_INCREMENT `mr_plug_linktype`
 --
 ALTER TABLE `mr_plug_linktype`
   MODIFY `plug_linktype_id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `mr_source`
---
-ALTER TABLE `mr_source`
-  MODIFY `source_id` tinyint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

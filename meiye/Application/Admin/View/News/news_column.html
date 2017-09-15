@@ -49,8 +49,11 @@
 																</if>
 																<a class="green" href="{:U('news_columnedit',array('c_id'=>$v['c_id']))}" title="修改">
 																	<i class="ace-icon fa fa-pencil bigger-130"></i></a>
+																<if condition='$v[column_leftid] neq 0'>
 																<a class="red" href="javascript:;" onclick="return del({$v.c_id});" title="删除">
-																	<i class="ace-icon fa fa-trash-o bigger-130"></i></a></div></td>
+																	<i class="ace-icon fa fa-trash-o bigger-130"></i></a>
+																</if>
+																</div></td>
 													</tr>
                                                  </foreach>   
                                                   <tr>

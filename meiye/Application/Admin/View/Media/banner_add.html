@@ -1,0 +1,88 @@
+	<include file='Common:header' />
+
+		<!-- /section:basics/navbar.layout -->
+		<div class="main-container" id="main-container">
+
+			<!-- #section:basics/sidebar -->
+
+	<include file='Common:left' />
+
+
+			<!-- /section:basics/sidebar -->
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="page-content">
+
+                        <!--主题-->
+						<div class="page-header">
+							<h1>
+								您当前操作
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									添加首页轮播
+								</small>
+							</h1>
+						</div>
+						<form class="form-horizontal" name="banneradd" id="banneradd-form" method="post" action="{:U('banner_add')}" enctype="multipart/form-data">
+						<div class="row">
+							<div class="col-md-12">
+
+									<div class="form-group" style="margin-bottom: 0px;">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 轮播图片：  </label>
+										<div class="col-sm-10">
+											<input id="pic_url" name="pic_one" type="file" class="col-xs-6 col-sm-3">
+										</div>
+										<div style="clear:both;"></div>
+									</div>
+                                    <div class="space-4"></div>
+																		
+									<div class="form-group" style="margin-bottom: 0px;">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 目标URL：  </label>
+										<div class="col-sm-10">
+											<input type="text" name="url_target" id="target_link" placeholder="输入链接URL" class="col-xs-10 col-sm-8" value="" />
+										</div>
+										<div style="clear:both;"></div>
+									</div>
+                                    <div class="space-4"></div>
+
+									<div class="form-group" style="margin-bottom: 0px;">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 排序：  </label>
+										<div class="col-sm-10">
+											<input type="text" name="order" id="order" value="50" class="col-xs-10 col-sm-3" />
+											<span class="lbl">&nbsp;&nbsp;<span class="red">*</span>从小到大排序</span>
+										</div>
+										<div style="clear:both;"></div>
+									</div>
+                                    <div class="space-4"></div>
+                                    <input type="hidden" name="action" value="dosubmit" />
+                                    <div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="ace-icon fa fa-check bigger-110"></i>
+												保存
+											</button>
+
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn" type="reset">
+												<i class="ace-icon fa fa-undo bigger-110"></i>
+												重置
+											</button>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+									<div class="hr hr-24"></div>
+							</form>
+
+<include file='Common:header_nav' />
+
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+
+	<include file='Common:footer' />
+
+		</div><!-- /.main-container -->
+	</body>
+</html>

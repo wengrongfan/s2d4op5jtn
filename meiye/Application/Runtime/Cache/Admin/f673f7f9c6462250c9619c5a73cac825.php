@@ -148,7 +148,7 @@ $('#cache').click(function(){
 if(confirm("确认要清除缓存？")){
 var $type=$('#type').val();
 var $mess=$('#mess');
-$.post('/index.php/Admin/News/clear',{type:$type},function(data){
+$.post('/index.php/Admin/Media/clear',{type:$type},function(data){
 alert("缓存清理成功");
 });
 }else{
@@ -251,166 +251,49 @@ return false;
 				<div class="main-content-inner">
 					<div class="page-content">
 
-                        
-                        
                         <!--主题-->
 						<div class="page-header">
 							<h1>
 								您当前操作
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									添加文章
+									添加首页轮播
 								</small>
 							</h1>
 						</div>
-
-
+						<form class="form-horizontal" name="banneradd" id="banneradd-form" method="post" action="<?php echo U('banner_add');?>" enctype="multipart/form-data">
 						<div class="row">
-							<div class="col-xs-12">
-								<form class="form-horizontal" name="form0" id="form0"  method="post" action="<?php echo U('news_runadd');?>"  enctype="multipart/form-data">
-														
-                                	<div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 文章所属主栏目： </label>
+							<div class="col-md-12">
+
+									<div class="form-group" style="margin-bottom: 0px;">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 轮播图片：  </label>
 										<div class="col-sm-10">
-                                        <select name="news_columnid"  class="col-sm-3 selector">
-                                        <option value="">请选择所属栏目</option>
-                                        <?php if(is_array($column)): foreach($column as $key=>$vo): ?><option value="<?php echo ($vo["c_id"]); ?>" <?php if($vo["column_type"] == 1): ?>disabled class="bgccc"<?php else: ?>class="bgc"<?php endif; ?>><?php echo ($vo["lefthtml"]); echo ($vo["column_name"]); ?> <?php if($vo["column_type"] == 1): ?>(频道页)<?php endif; ?></option><?php endforeach; endif; ?>
-                                        </select>
-                                        </div>
-									</div>
-									<div class="space-4"></div>
-                                    
-                                	<div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 文章名称：  </label>
-										<div class="col-sm-10">
-											<input type="text" name="news_title" id="news_title"  placeholder="必填：文章标题"  class="col-xs-10 col-sm-6"/>
-											 <input type="text" name="news_titleshort" id="news_titleshort"  placeholder="简短标题，建议6~12字数"  class="col-xs-10 col-sm-4" style="margin-left:10px;" />
-                                            <span class="help-inline col-xs-12 col-sm-7">
-												<span class="middle" id="resone"></span>
-											</span>
+											<input id="pic_url" name="pic_one" type="file" class="col-xs-6 col-sm-3">
 										</div>
-									</div>
-                                    <div class="space-4"></div>
-									
-									<div class="form-group" id="pptaddress">
-										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 跳转地址：  </label>
-										<div class="col-sm-10">
-											<input type="text" name="news_zaddress" id="news_zaddress" placeholder="跳转地址" class="col-xs-10 col-sm-7" />
-                                            <span class="help-inline col-xs-12 col-sm-5">
-												<span class="middle">正确格式：http:// 开头</span>
-											</span>
-										</div>
+										<div style="clear:both;"></div>
 									</div>
                                     <div class="space-4"></div>
 																		
-									<div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 文章关键字：  </label>
+									<div class="form-group" style="margin-bottom: 0px;">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 目标URL：  </label>
 										<div class="col-sm-10">
-											<input type="text" name="news_key" id="news_key" placeholder="输入文章关键字，以英文,逗号隔开" class="col-xs-10 col-sm-6" />
+											<input type="text" name="url_target" id="target_link" placeholder="输入链接URL" class="col-xs-10 col-sm-8" value="" />
 										</div>
+										<div style="clear:both;"></div>
 									</div>
                                     <div class="space-4"></div>
-									
-									<div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 封面图片上传： </label>
+
+									<div class="form-group" style="margin-bottom: 0px;">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 排序：  </label>
 										<div class="col-sm-10">
-										<a href="javascript:;" class="file">
-                                          <input type="file" name="pic_one[]" id="file0" />
-											选择上传文件
-										</a>
-											<span class="lbl">&nbsp;&nbsp;<img src="/Public/img/no_img.jpg" width="100" height="70" id="img0" ></span>&nbsp;&nbsp;<a href="javascript:;" onClick="return backpic('/Public/img/no_img.jpg');" title="还原修改前的图片" class="file">
-                                            撤销上传
-										</a>
-											<span class="lbl">&nbsp;&nbsp;上传前先用PS处理成等比例图片后上传，默认比例100*70、600*420、800*560像素<br />
-</span>
+											<input type="text" name="order" id="order" value="50" class="col-xs-10 col-sm-3" />
+											<span class="lbl">&nbsp;&nbsp;<span class="red">*</span>从小到大排序</span>
 										</div>
+										<div style="clear:both;"></div>
 									</div>
                                     <div class="space-4"></div>
-
-
-                                    <input name="news_pic_type" id="news_pic_list" checked type="hidden" class="ace" value="1"/>
-									<!-- <div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 文章显示模式： </label>
-										<div class="col-sm-10">
-                                            <div class="radio" >
-													<label>
-														<input name="news_pic_type" id="news_pic_list" checked type="hidden" class="ace" value="1"/>
-														<span class="lbl"> 普通模式</span>
-													</label>
-													<label>
-														<input name="news_pic_type" id="news_pic_qqlist" type="radio" class="ace" value="2"/>
-														<span class="lbl"> 多图模式</span>
-													</label>
-												</div>
-										</div>
-									</div>
-                                    <div class="space-4"></div> -->
-
-
-
-
-
-
-    <link href="/Public/ppy/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />	
-    <script src="/Public/ppy/js/fileinput.js" type="text/javascript"></script>
-    <script src="/Public/ppy/js/fileinput_locale_zh.js" type="text/javascript"></script>
-
-
-
-									<div class="form-group" id="pic_list">
-										<div class="col-sm-12" style="padding-top:5px;">
-                                          <input id="file-5" name="pic_all[]" type="file" class="file"  multiple data-preview-file-type="any" data-upload-url="#" data-preview-file-icon=""><br />
-										  <textarea name="news_pic_content" class="col-xs-12 col-sm-12" id="news_pic_content"  placeholder="多图对应文章说明，例如： 图片一说明 | 图片二说明 | 图片三说明    每个文字说明以 | 分割" ></textarea>
-										</div>
-									</div>
-                                    <div class="space-4"></div>
-
-
-
-
-
-
-
-
-
-
-							
-		
-									<div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 是否审核： </label>
-										<div class="col-sm-10" style="padding-top:5px;">
-                                            <input name="news_open" id="news_open" value="1" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox" />
-											<span class="lbl">&nbsp;&nbsp;默认关闭</span>
-										</div>
-									</div>
-                                    <div class="space-4"></div>
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 文章简介： </label>
-										<div class="col-sm-9">
-											<input type="text" name="news_scontent" id="news_scontent" class="col-xs-10 col-sm-10"  maxlength="50" />
-											<label class="input_last">已限制在50个字以内</label>
-										</div>
-									</div>
-                                    <div class="space-4"></div>
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 文章主内容 </label>
-										<div class="col-sm-10">
-											<script src="/Public/ueditor/ueditor.config.js" type="text/javascript"></script>
-                                            <script src="/Public/ueditor/ueditor.all.js" type="text/javascript"></script>
-											<textarea name="news_content" rows="100%" style="width:100%" id="myEditor"></textarea>  
-											<script type="text/javascript"> 
-                                                var ue = UE.getEditor('myEditor',{
-													initialFrameHeight:350,//设置编辑器高度
-													scaleEnabled:true
-												}); 
-                                            </script>
-										</div>
-									</div>
-                                    <div class="space-4"></div>
-                                    
-									<div class="clearfix form-actions">
+                                    <input type="hidden" name="action" value="dosubmit" />
+                                    <div class="clearfix form-actions">
 										<div class="col-md-offset-3 col-md-9">
 											<button class="btn btn-info" type="submit">
 												<i class="ace-icon fa fa-check bigger-110"></i>
@@ -424,10 +307,11 @@ return false;
 											</button>
 										</div>
 									</div>
-								</form>
-                        	</div>
-                        </div>
+									
+								</div>
+							</div>
 									<div class="hr hr-24"></div>
+							</form>
 
 <div class="breadcrumbs breadcrumbs-fixed " id="breadcrumbs">
 	<div class="row">
@@ -510,98 +394,5 @@ return false;
 
 
 		</div><!-- /.main-container -->
-
 	</body>
 </html>
-<script>
-function backpic(picurl){
-	$("#img0").attr("src",picurl);//还原修改前的图片
-	$("input[name='file0']").val("");//清空文本框的值
-}
-
-$(document).ready(function(){
-
-//多图设置
-  $("#pic_list").hide();
-  $("#news_pic_list").click(function(){
-  	$("#pic_list").hide();
-  });
-  $("#news_pic_qqlist").click(function(){
-  	$("#pic_list").show();
-  });
-  
-  $("#pptaddress").hide();
-  $("#news_flag_vaj").click(function(){
-    $("#pptaddress").toggle(500);
-  });
-});
-
-
-$(function(){
-	$('#form0').ajaxForm({
-		beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
-		success: complete, // 这是提交后的方法
-		dataType: 'json'
-	});
-	
-	function checkForm(){
-		if( '' == $(".selector").val()){
-			layer.alert('文章所属栏目不能为空', {icon: 6}, function(index){
- 			layer.close(index);
-			$('.selector').focus(); 
-			});
-			return false;
-		}
-	
-		if( '' == $.trim($('#news_title').val())){
-			layer.alert('文章标题不能为空', {icon: 6}, function(index){
- 			layer.close(index);
-			$('#news_title').focus(); 
-			});
-			return false;
-		}
- }
-	function complete(data){
-		if(data.status==1){
-			layer.alert(data.info, {icon: 6}, function(index){
- 			layer.close(index);
-			window.location.href=data.url;
-			});
-		}else{
-			layer.alert(data.info, {icon: 6}, function(index){
- 			layer.close(index);
-			window.location.href=data.url;
-			});
-		}
-	}
- 
-});
-
-$("#file0").change(function(){
-	var objUrl = getObjectURL(this.files[0]) ;
-	console.log("objUrl = "+objUrl) ;
-	if (objUrl) {
-		$("#img0").attr("src", objUrl) ;
-	}
-}) ;
-//建立一個可存取到該file的url
-function getObjectURL(file) {
-	var url = null ; 
-	if (window.createObjectURL!=undefined) { // basic
-	$("#news_flag_vap").attr("checked", true);
-		url = window.createObjectURL(file) ;
-	} else if (window.URL!=undefined) { // mozilla(firefox)
-	$("#news_flag_vap").attr("checked", true);
-		url = window.URL.createObjectURL(file) ;
-	} else if (window.webkitURL!=undefined) { // webkit or chrome
-		$("#news_flag_vap").attr("checked", true);
-		url = window.webkitURL.createObjectURL(file) ;
-	}
-	return url ;
-}
-//来源
-function souadd(val){
-	$('#news_source').val(val);
-}
-
-</script>

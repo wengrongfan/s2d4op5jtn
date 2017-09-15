@@ -262,14 +262,10 @@ return false;
 		<option value="news_title" <?php if(($keytype == 'news_title') or ($keytype == '')): ?>selected<?php endif; ?>>按标题</option>
 		<option value="news_auto" <?php if($keytype == 'news_auto'): ?>selected<?php endif; ?>>按发布人</option>
 	</select>
-	<select name="diyflag">
-		<option value="">按属性</option>
-		<?php if(is_array($diyflag)): foreach($diyflag as $key=>$v): ?><option value="<?php echo ($v["diyflag_value"]); ?>" <?php if($diyflag_check == $v['diyflag_value']): ?>selected<?php endif; ?>><?php echo ($v["diyflag_name"]); ?>(<?php echo ($v["diyflag_value"]); ?>)</option><?php endforeach; endif; ?>
-	</select>
 	<select name="opentype_check">
 	  <option value="">状态</option>
-	  <option value="1" <?php if($opentype_check == '1'): ?>selected="selected"<?php endif; ?>>已审</option>
-	  <option value="0" <?php if($opentype_check == '0'): ?>selected="selected"<?php endif; ?> >未审</option>
+	  <option value="1" <?php if($opentype_check == '1'): ?>selected="selected"<?php endif; ?>>启用</option>
+	  <option value="0" <?php if($opentype_check == '0'): ?>selected="selected"<?php endif; ?> >关闭</option>
 	  </select>
 </div>
 							
@@ -324,12 +320,13 @@ return false;
 													<tr>
 														<th width="5%" class="center">
 															<label class="pos-rel">
-																<input type="checkbox" class="ace"  id='chkAll' onclick='CheckAll(this.form)' value="全选"/>
-													  <span class="lbl"></span>															</label>														</th>
+															<input type="checkbox" class="ace"  id='chkAll' onclick='CheckAll(this.form)' value="全选"/>
+													  		<span class="lbl"></span>
+													  		</label>
+													  	</th>
 													  <th width="5%">ID</th>
 													  <th width="40%">文章标题</th>
 													  <th width="10%">所属栏目</th>
-													  <th width="12%">文章属性</th>
 													  <th width="6%">点击</th>
 													  <th width="6%">状态</th>
 													  <th width="9%">发布时间</th>
@@ -347,18 +344,8 @@ return false;
 														</label>
 														</td>
 														<td align="center"><?php echo ($v["n_id"]); ?></td>
-														<td><a href="" target="_blank" title="<?php echo ($v["news_title"]); ?>"><?php echo (subtext($v["news_title"],25)); ?></a>【<?php echo ($v["news_auto"]); ?>】</td>
+														<td><a href="javascript:void(0);" target="_blank" title="<?php echo ($v["news_title"]); ?>"><?php echo (subtext($v["news_title"],25)); ?></a>【<?php echo ($v["news_auto"]); ?>】</td>
 														<td><?php echo ($v["column_name"]); ?></td>
-														<td>
-													<?php if(strstr($v['news_flag'],'h') == true): ?><span style="color:#03C">头</span><?php endif; ?>
-                                                    <?php if(strstr($v['news_flag'],'c') == true): ?><span style="color:#060">荐</span><?php endif; ?>
-                                                    <?php if(strstr($v['news_flag'],'f') == true): ?><span style="color:#09F">幻</span><?php endif; ?>
-                                                    <?php if(strstr($v['news_flag'],'a') == true): ?><span style="color:#63C">特</span><?php endif; ?>
-                                                    <?php if(strstr($v['news_flag'],'s') == true): ?><span style="color:#C0C">滚</span><?php endif; ?>
-                                                    <?php if(strstr($v['news_flag'],'p') == true): ?><span style="color:#960">图</span><?php endif; ?>
-                                                    <?php if(strstr($v['news_flag'],'j') == true): ?><span style="color:#C00">跳</span><?php endif; ?>
-                                                    <?php if(strstr($v['news_flag'],'d') == true): ?><span style="color:#630">原</span><?php endif; ?>
-														</td>
 														<td><?php echo ($v["news_hits"]); ?></td>
 														<td>
 														<?php if($v[news_open] == 1): ?><a class="red" href="javascript:;" onclick="return stateyes(<?php echo ($v["n_id"]); ?>);" title="已开启">
