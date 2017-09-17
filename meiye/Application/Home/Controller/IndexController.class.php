@@ -21,4 +21,29 @@ class IndexController extends BaseController {
 		//$this->assign('page' , $show);
 		$this->display('index');
 	}
+
+	public function about()
+	{
+		$this->display('main/about');
+	}
+
+	public function team()
+	{
+		$this->display('main/team');
+	}
+
+	public function news()
+	{
+		$this->display('main/news');
+	}
+
+	public function service()
+	{
+		$this->display('main/service');
+	}
+
+	public function contact()
+	{
+		$this->display('main/contact');
+	}
 }

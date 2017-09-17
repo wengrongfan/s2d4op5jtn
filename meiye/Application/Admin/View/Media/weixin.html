@@ -1,0 +1,55 @@
+	<include file='Common:header' />
+
+		<!-- /section:basics/navbar.layout -->
+		<div class="main-container" id="main-container">
+
+			<!-- #section:basics/sidebar -->
+
+	<include file='Common:left' />
+			<!-- /section:basics/sidebar -->
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="page-content">
+
+							<div class="row">
+							    <div class="col-xs-12">
+										<div align="center">
+											<if condition="count($list) gt 0">
+												<img src="__PUBLIC__/{$list.url_pic}">
+											<else/>
+											 	<img src="__PUBLIC__/img/nopic.png">
+											</if>
+							    		</div>
+							    		<span>*建议上传正方形的100x100至300x300的图片</span>
+							    		<div align="center">
+							    			<form class="form-horizontal" name="winxin" id="weixin-form" method="post" action="{:U('weixin')}" enctype="multipart/form-data">
+							    				<p><input type="file" name="pic_one"></p>
+							    				<div class="clearfix form-actions">
+													<div class="col-md-offset-3 col-md-9">
+														<button class="btn btn-info" type="submit">
+															<i class="ace-icon fa fa-check bigger-110"></i>
+															保存
+														</button>
+														&nbsp; &nbsp; &nbsp;
+														<button class="btn" type="reset">
+															<i class="ace-icon fa fa-undo bigger-110"></i>
+															重置
+														</button>
+													</div>
+												</div>
+							    				<input type="hidden" name="action" value="dosubmit">
+							    			</form>
+							    		</div>
+									</div>
+								</div>
+
+<include file='Common:header_nav' />
+
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+	<include file='Common:footer' />
+    
+		</div><!-- /.main-container -->
+	</body>
+</html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-09-15 07:16:58
+-- Generation Time: 2017-09-17 02:07:01
 -- 服务器版本： 5.7.14
 -- PHP Version: 7.0.10
 
@@ -45,7 +45,7 @@ CREATE TABLE `mr_admin` (
 --
 
 INSERT INTO `mr_admin` (`admin_id`, `admin_username`, `admin_pwd`, `admin_email`, `admin_realname`, `admin_tel`, `admin_hits`, `admin_ip`, `admin_addtime`, `admin_mdemail`, `admin_open`) VALUES
-(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1023102176@qq.com', 'Tot ziens', '18819489576', 247, '127.0.0.1', 112222233, '206125c6e7523ba7c0301144ac24eea9', 1),
+(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1023102176@qq.com', 'Tot ziens', '18819489576', 248, '127.0.0.1', 112222233, '206125c6e7523ba7c0301144ac24eea9', 1),
 (2, 'test', 'e10adc3949ba59abbe56e057f20f883e', '1023102176@qq.com', 'test', '18819489689', 25, '127.0.0.1', 1446683501, '206125c6e7523ba7c0301144ac24eea9', 1);
 
 -- --------------------------------------------------------
@@ -192,7 +192,8 @@ INSERT INTO `mr_auth_rule` (`id`, `name`, `title`, `type`, `status`, `authopen`,
 (160, 'News/column_state', '操作-状态', 1, 1, 0, '', '', 13, 4, 1461550835, 1, 0, 4),
 (247, 'Media', '媒体管理', 1, 1, 0, 'fa-film', '', 0, 50, 1505454139, NULL, 1, 1),
 (181, 'Sys/admin_group_state', '操作-状态', 1, 1, 0, '', '', 17, 50, 1461834340, 1, 0, 4),
-(253, 'Media/weixin', '二维码', 1, 1, 1, '', '', 249, 50, 1505454713, NULL, 1, 3);
+(253, 'Media/weixin', '二维码', 1, 1, 1, '', '', 249, 50, 1505454713, NULL, 1, 3),
+(254, 'Sys/base_info', '基础信息', 1, 1, 0, '', '', 2, 50, 1505591939, NULL, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -244,7 +245,7 @@ CREATE TABLE `mr_media` (
   `type` tinyint(4) NOT NULL COMMENT '1轮博，2微信二维码',
   `sort` smallint(6) NOT NULL DEFAULT '1' COMMENT '排序',
   `url_pic` varchar(200) NOT NULL COMMENT '图片地址',
-  `url_target` varchar(200) NOT NULL COMMENT '跳转目标',
+  `url_target` varchar(200) DEFAULT NULL COMMENT '跳转目标',
   `create_time` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -253,7 +254,8 @@ CREATE TABLE `mr_media` (
 --
 
 INSERT INTO `mr_media` (`id`, `type`, `sort`, `url_pic`, `url_target`, `create_time`) VALUES
-(2, 1, 50, '/uploads/2017-09/59bb7e3b20458.png', 'http://www.baidu.com', 1505459771);
+(2, 1, 50, '/uploads/2017-09/59bb7e3b20458.png', 'http://www.baidu.com', 1505459771),
+(3, 2, 1, '/uploads/2017-09/59bd8082e5425.jpg', NULL, 1505591426);
 
 -- --------------------------------------------------------
 
@@ -374,6 +376,21 @@ INSERT INTO `mr_plug_linktype` (`plug_linktype_id`, `plug_linktype_name`, `plug_
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `mr_staff`
+--
+
+CREATE TABLE `mr_staff` (
+  `id` int(11) NOT NULL,
+  `staff_name` varchar(15) NOT NULL COMMENT '姓名',
+  `staff_position` varchar(15) NOT NULL COMMENT '职位',
+  `staff_pic` varchar(200) NOT NULL COMMENT '图片',
+  `staff_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1启用，2禁用',
+  `create_time` int(11) DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `mr_sys`
 --
 
@@ -383,15 +400,16 @@ CREATE TABLE `mr_sys` (
   `sys_url` varchar(36) NOT NULL DEFAULT '',
   `sys_title` varchar(200) NOT NULL,
   `sys_key` varchar(200) NOT NULL,
-  `sys_des` varchar(200) NOT NULL
+  `sys_des` varchar(200) NOT NULL,
+  `sys_base` text COMMENT '站点基础信息，json'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 `mr_sys`
 --
 
-INSERT INTO `mr_sys` (`sys_id`, `sys_name`, `sys_url`, `sys_title`, `sys_key`, `sys_des`) VALUES
-(1, '数炼成精', 'http://www.maths-video.org.cn/', '数炼成精视频教学网', '数炼成精,大数据,数据分析,视频教学', '数炼成精视频教学网');
+INSERT INTO `mr_sys` (`sys_id`, `sys_name`, `sys_url`, `sys_title`, `sys_key`, `sys_des`, `sys_base`) VALUES
+(1, '数炼成精', 'http://www.maths-video.org.cn/', '数炼成精视频教学网', '数炼成精,大数据,数据分析,视频教学', '数炼成精视频教学网', '{"mobile":"3457782356","phone":"020-717263","mail":"1023102176@qq.com","address":"\\u8463\\u84c9\\u84c9"}');
 
 --
 -- Indexes for dumped tables
@@ -470,6 +488,12 @@ ALTER TABLE `mr_plug_linktype`
   ADD PRIMARY KEY (`plug_linktype_id`);
 
 --
+-- Indexes for table `mr_staff`
+--
+ALTER TABLE `mr_staff`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `mr_sys`
 --
 ALTER TABLE `mr_sys`
@@ -493,7 +517,7 @@ ALTER TABLE `mr_auth_group`
 -- 使用表AUTO_INCREMENT `mr_auth_rule`
 --
 ALTER TABLE `mr_auth_rule`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 --
 -- 使用表AUTO_INCREMENT `mr_column`
 --
@@ -503,7 +527,7 @@ ALTER TABLE `mr_column`
 -- 使用表AUTO_INCREMENT `mr_media`
 --
 ALTER TABLE `mr_media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- 使用表AUTO_INCREMENT `mr_member_list`
 --
@@ -529,6 +553,11 @@ ALTER TABLE `mr_plug_link`
 --
 ALTER TABLE `mr_plug_linktype`
   MODIFY `plug_linktype_id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- 使用表AUTO_INCREMENT `mr_staff`
+--
+ALTER TABLE `mr_staff`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

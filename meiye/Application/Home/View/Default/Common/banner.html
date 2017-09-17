@@ -1,0 +1,32 @@
+<script type="text/javascript" src="__PUBLIC__/assets/js/banner.js"></script>
+<script language="javascript">
+$(function(){
+	$('#owl-demo').owlCarousel({
+		items: 1,
+		navigation: true,
+		navigationText: ["上一个","下一个"],
+		autoPlay: true,
+		stopOnHover: true
+	}).hover(function(){
+		$('.owl-buttons').show();
+	}, function(){
+		$('.owl-buttons').hide();
+	});
+});
+</script>
+
+<!--幻灯片-->
+<div id="banner" class="banner"> 
+    <div id="owl-demo" class="owl-carousel"> 
+        <a class="item" target="_blank" href="" style="background-image:url(__PUBLIC__/static/banner.jpg)">
+            <img src="__PUBLIC__/static/banner.jpg" alt="">
+        </a>
+        <a class="item" target="_blank" href="" style="background-image:url(__PUBLIC__/static/banner.jpg)">
+            <img src="__PUBLIC__/static/banner.jpg" alt="">
+        </a>
+        <a class="item" target="_blank" href="" style="background-image:url(__PUBLIC__/static/banner.jpg)">
+            <img src="__PUBLIC__/static/banner.jpg" alt="">
+        </a>
+    </div>
+</div>
+<!--幻灯片-->

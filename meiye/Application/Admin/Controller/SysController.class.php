@@ -38,6 +38,33 @@ class SysController extends AuthController {
     	}
     }
 
+    //站点基础信息
+    public function base_info() {
+        $sys=M('sys');
+
+        if(I('action') == 'dosubmit') {
+            
+            $mobile = I('mobile');
+            $phone = I('phone');
+            $mail = I('mail');
+            $addr = I('address');
+
+            $info =array('mobile' => $mobile,'phone' => $phone, 'mail' => $mail, 'address' => $addr);
+            if($sys->field('sys_id,sys_base')->save(array('sys_id' => 1, 'sys_base' => json_encode($info)))) {
+                $this->redirect('base_info');
+            } else {
+                $this->error('保存失败');
+            }
+        }
+
+        $base_info = $sys->field('sys_base')->find(1);
+        $base_info = $base_info['sys_base'] != '' ? json_decode($base_info['sys_base'], TRUE) : array();
+
+        $this->assign('sys_id', 1);
+        $this->assign('base', $base_info);
+        $this->display();
+    }
+
 /************************************管理员模块****************************************/
     
 	public function admin_list(){
