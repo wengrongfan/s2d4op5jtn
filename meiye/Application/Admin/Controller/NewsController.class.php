@@ -10,7 +10,7 @@ class NewsController extends AuthController {
 	//文章列表
     public function news_list(){
     	$news_list=D('News');
-    	$keytype=I('keytype',news_title);
+    	$keytype=I('keytype','news_title');
     	$key=I('key');
     	$opentype_check=I('opentype_check','');
     	//查询：时间格式过滤
