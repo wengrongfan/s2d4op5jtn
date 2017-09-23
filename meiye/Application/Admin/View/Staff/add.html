@@ -1,0 +1,189 @@
+	<include file='Common:header' />
+
+		<!-- /section:basics/navbar.layout -->
+		<div class="main-container" id="main-container">
+
+			<!-- #section:basics/sidebar -->
+
+	<include file='Common:left' />
+
+
+			<!-- /section:basics/sidebar -->
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="page-content">
+
+                        
+                        
+                        <!--主题-->
+						<div class="page-header">
+							<h1>
+								您当前操作
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									添加员工风采
+								</small>
+							</h1>
+						</div>
+
+
+						<div class="row">
+							<div class="col-xs-12">
+								<form class="form-horizontal" name="form0" id="form0"  method="post" action="{:U('add')}"  enctype="multipart/form-data">
+                                    
+                                	<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 员工名称：  </label>
+										<div class="col-sm-10">
+											<input type="text" name="staff_name" id="staff_name"  placeholder="员工名称"  class="col-xs-10 col-sm-6"/>
+                                            <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle" id="resone"></span>
+											</span>
+										</div>
+									</div>
+                                    <div class="space-4"></div>
+									
+									<div class="form-group" id="pptaddress">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 员工职位：  </label>
+										<div class="col-sm-10">
+											<input type="text" name="staff_position" id="staff_position" placeholder="员工职位" class="col-xs-10 col-sm-7" />
+                                            <span class="help-inline col-xs-12 col-sm-5">
+												<span class="middle"></span>
+											</span>
+										</div>
+									</div>
+                                    <div class="space-4"></div>
+									
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 封面图片上传： </label>
+										<div class="col-sm-10">
+										<a href="javascript:;" class="file">
+                                          <input type="file" name="pic_one" id="file0" />
+											选择上传文件
+										</a>
+											<span class="lbl">&nbsp;&nbsp;<img src="__PUBLIC__/img/no_img.jpg" width="100" height="70" id="img0" ></span>&nbsp;&nbsp;<a href="javascript:;" onClick="return backpic('__PUBLIC__/img/no_img.jpg');" title="还原修改前的图片" class="file">
+                                            撤销上传
+										</a>
+											<span class="lbl">&nbsp;&nbsp;上传前先用PS处理成等比例图片后上传，600*420像素最佳<br />
+</span>
+										</div>
+									</div>
+                                    <div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 员工简介： </label>
+										<div class="col-sm-10" style="padding-top:5px;">
+											<textarea id="staff_description" name="staff_description" rows="6" cols="100"></textarea>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 是否审核： </label>
+										<div class="col-sm-10" style="padding-top:5px;">
+                                            <input name="staff_status" id="staff_status" checked value="1" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox" />
+											<span class="lbl">&nbsp;&nbsp;默认开启</span>
+										</div>
+									</div>
+                                    <div class="space-4"></div>
+                                    <input type="hidden" name="action" value="dosubmit">
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="ace-icon fa fa-check bigger-110"></i>
+												保存
+											</button>
+
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn" type="reset">
+												<i class="ace-icon fa fa-undo bigger-110"></i>
+												重置
+											</button>
+										</div>
+									</div>
+								</form>
+                        	</div>
+                        </div>
+									<div class="hr hr-24"></div>
+
+<include file='Common:header_nav' />
+
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+
+	<include file='Common:footer' />
+
+		</div><!-- /.main-container -->
+
+	</body>
+</html>
+<script>
+function backpic(picurl){
+	$("#img0").attr("src",picurl);//还原修改前的图片
+	$("input[name='file0']").val("");//清空文本框的值
+}
+
+
+$(function(){
+	$('#form0').ajaxForm({
+		beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+		success: complete, // 这是提交后的方法
+		dataType: 'json'
+	});
+	
+	function checkForm(){
+		if( '' == $(".staff_name").val()){
+			layer.alert('员工名称不能为空', {icon: 6}, function(index){
+ 			layer.close(index);
+			$('.staff_name').focus(); 
+			});
+			return false;
+		}
+	
+		if( '' == $.trim($('#staff_position').val())){
+			layer.alert('员工职位不能为空', {icon: 6}, function(index){
+ 			layer.close(index);
+			$('#staff_position').focus(); 
+			});
+			return false;
+		}
+ }
+	function complete(data){
+		if(data.status==1){
+			layer.alert(data.info, {icon: 6}, function(index){
+ 			layer.close(index);
+			window.location.href=data.url;
+			});
+		}else{
+			layer.alert(data.info, {icon: 6}, function(index){
+ 			layer.close(index);
+			window.location.href=data.url;
+			});
+		}
+	}
+ 
+});
+
+$("#file0").change(function(){
+	var objUrl = getObjectURL(this.files[0]) ;
+	console.log("objUrl = "+objUrl) ;
+	if (objUrl) {
+		$("#img0").attr("src", objUrl) ;
+	}
+}) ;
+//建立一個可存取到該file的url
+function getObjectURL(file) {
+	var url = null ; 
+	if (window.createObjectURL!=undefined) { // basic
+	$("#news_flag_vap").attr("checked", true);
+		url = window.createObjectURL(file) ;
+	} else if (window.URL!=undefined) { // mozilla(firefox)
+	$("#news_flag_vap").attr("checked", true);
+		url = window.URL.createObjectURL(file) ;
+	} else if (window.webkitURL!=undefined) { // webkit or chrome
+		$("#news_flag_vap").attr("checked", true);
+		url = window.webkitURL.createObjectURL(file) ;
+	}
+	return url ;
+}
+
+</script>

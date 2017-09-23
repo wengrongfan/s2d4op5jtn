@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-09-17 02:07:01
+-- Generation Time: 2017-09-23 05:32:14
 -- 服务器版本： 5.7.14
 -- PHP Version: 7.0.10
 
@@ -45,7 +45,7 @@ CREATE TABLE `mr_admin` (
 --
 
 INSERT INTO `mr_admin` (`admin_id`, `admin_username`, `admin_pwd`, `admin_email`, `admin_realname`, `admin_tel`, `admin_hits`, `admin_ip`, `admin_addtime`, `admin_mdemail`, `admin_open`) VALUES
-(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1023102176@qq.com', 'Tot ziens', '18819489576', 248, '127.0.0.1', 112222233, '206125c6e7523ba7c0301144ac24eea9', 1),
+(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1023102176@qq.com', 'Tot ziens', '18819489576', 249, '127.0.0.1', 112222233, '206125c6e7523ba7c0301144ac24eea9', 1),
 (2, 'test', 'e10adc3949ba59abbe56e057f20f883e', '1023102176@qq.com', 'test', '18819489689', 25, '127.0.0.1', 1446683501, '206125c6e7523ba7c0301144ac24eea9', 1);
 
 -- --------------------------------------------------------
@@ -133,7 +133,7 @@ INSERT INTO `mr_auth_rule` (`id`, `name`, `title`, `type`, `status`, `authopen`,
 (17, 'Sys/admin_group', '用户组列表', 1, 1, 0, '', '', 15, 0, 1446535750, 1, 1, 3),
 (18, 'Sys/admin_rule', '权限管理', 1, 1, 0, '', '', 15, 1, 1446535750, 1, 1, 3),
 (25, 'News/news_back', '回收站', 1, 1, 0, '', '', 8, 2, 1447039310, 1, 1, 3),
-(28, 'Plug', '插件功能', 1, 1, 0, 'fa-plug', '', 0, 400, 1447231590, 1, 1, 1),
+(28, 'Plug', '插件功能', 1, 1, 0, 'fa-plug', '', 0, 400, 1447231590, 1, 0, 1),
 (31, 'Plug/plug_link_list', '友情链接', 1, 1, 0, '', '', 28, 50, 1447232183, 0, 1, 3),
 (32, 'Plug/plug_link_list', '链接列表', 1, 1, 0, '', '', 31, 50, 1447639935, 0, 1, 3),
 (34, 'Plug/plug_linktype_list', '所属栏目', 1, 1, 0, '', '', 31, 50, 1447640839, 0, 1, 3),
@@ -192,8 +192,15 @@ INSERT INTO `mr_auth_rule` (`id`, `name`, `title`, `type`, `status`, `authopen`,
 (160, 'News/column_state', '操作-状态', 1, 1, 0, '', '', 13, 4, 1461550835, 1, 0, 4),
 (247, 'Media', '媒体管理', 1, 1, 0, 'fa-film', '', 0, 50, 1505454139, NULL, 1, 1),
 (181, 'Sys/admin_group_state', '操作-状态', 1, 1, 0, '', '', 17, 50, 1461834340, 1, 0, 4),
-(253, 'Media/weixin', '二维码', 1, 1, 1, '', '', 249, 50, 1505454713, NULL, 1, 3),
-(254, 'Sys/base_info', '基础信息', 1, 1, 0, '', '', 2, 50, 1505591939, NULL, 1, 3);
+(253, 'Media/weixin', '二维码', 1, 1, 0, '', '', 249, 50, 1505454713, NULL, 1, 3),
+(254, 'Sys/base_info', '基础信息', 1, 1, 0, '', '', 2, 50, 1505591939, NULL, 1, 3),
+(255, 'Staff', '团队风采', 1, 1, 0, 'fa-group', '', 0, 50, 1505710836, NULL, 1, 1),
+(256, 'Staff/list', '员工风采', 1, 1, 0, '', '', 255, 50, 1505710878, NULL, 1, 2),
+(257, 'Staff/list', '员工列表', 1, 1, 0, '', '', 256, 50, 1505710907, NULL, 1, 3),
+(262, 'Staff/add', '添加风采', 1, 1, 0, '', '', 256, 50, 1506138733, NULL, 1, 3),
+(259, 'Staff/edit', '编辑', 1, 1, 0, '', '', 257, 50, 1505710985, NULL, 0, 4),
+(260, 'Staff/status', '状态', 1, 1, 0, '', '', 257, 50, 1505711004, NULL, 0, 4),
+(261, 'Staff/del', '删除', 1, 1, 0, '', '', 257, 50, 1505711026, NULL, 0, 4);
 
 -- --------------------------------------------------------
 
@@ -384,9 +391,18 @@ CREATE TABLE `mr_staff` (
   `staff_name` varchar(15) NOT NULL COMMENT '姓名',
   `staff_position` varchar(15) NOT NULL COMMENT '职位',
   `staff_pic` varchar(200) NOT NULL COMMENT '图片',
-  `staff_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1启用，2禁用',
+  `staff_description` text NOT NULL,
+  `staff_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1启用，0禁用',
   `create_time` int(11) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `mr_staff`
+--
+
+INSERT INTO `mr_staff` (`id`, `staff_name`, `staff_position`, `staff_pic`, `staff_description`, `staff_status`, `create_time`) VALUES
+(1, '邱威润', '董事长', '/uploads/2017-09/59c5e1a0c861c.jpg', '云秀国际领头人，年纪轻轻身价过亿，才高八斗，遥不可及也。', 1, 1506140576),
+(2, '翁榕钒', '董事长私人卫生间清洁员', '/uploads/2017-09/59c5f0aeb364b.jpg', '董事长私人卫生间清洁员', 1, 1506144430);
 
 -- --------------------------------------------------------
 
@@ -517,7 +533,7 @@ ALTER TABLE `mr_auth_group`
 -- 使用表AUTO_INCREMENT `mr_auth_rule`
 --
 ALTER TABLE `mr_auth_rule`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=263;
 --
 -- 使用表AUTO_INCREMENT `mr_column`
 --
@@ -557,7 +573,7 @@ ALTER TABLE `mr_plug_linktype`
 -- 使用表AUTO_INCREMENT `mr_staff`
 --
 ALTER TABLE `mr_staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
