@@ -1,0 +1,15 @@
+<?php
+namespace Home\Controller;
+use Think\Controller;
+use Common\Controller\BaseController;
+use Think\Base;
+
+class InfoController extends BaseController {
+    /*
+     * 公共方法
+     */
+    Public function _initialize()
+    {
+        parent::_initialize();
+    }
+}
