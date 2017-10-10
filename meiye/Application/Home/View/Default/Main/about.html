@@ -19,10 +19,13 @@
     <div class="wrap scd clearfix">
         <div class="scd_l">
             <div class="s_top"><span>关于云秀</span></div>
+            <?php $menu = isset($menu_tree[MENU_ABOUT]) ? $menu_tree[MENU_ABOUT] : ''; ?>
+            <?php $choose = ''; ?>
             <ul class="s_nav">
-                <li class="active"><a href=""><i>&nbsp;</i><span>企业介绍</span></a></li>
-                <li><a href=""><i>&nbsp;</i><span>企业文化</span></a></li>
-                <li><a href=""><i>&nbsp;</i><span>创始人</span></a></li>
+                <foreach name="menu" item="m">
+                    <li <?php echo isset($menu_id) && $menu_id == $m['id'] ? 'class="active"' : ''; ?>><a href="{:U('menu/menu', array('id' => $m['id']))}"><i>&nbsp;</i><span>{$m.name}</span></a></li>
+                    <?php if(isset($menu_id) && $menu_id == $m['id']) $choose = $m['name']; ?>
+                </foreach>
             </ul>
             <div class="space_hx">&nbsp;</div>
         </div>
@@ -32,9 +35,11 @@
                 <span>公司简介<em>Introduction</em></span>
                 <div class="pst">
                     当前位置：
-                    <a href="">首页</a>-
-                    <a href="">关于云秀</a>-
-                    <a href="">公司简介</a>
+                    <a href="{:U('index/index'}">首页</a>-
+                    <a href="{:U('menu/menu', array('id' => MENU_ABOUT))}">关于云秀</a>
+                    <if condition="$choose neq ''">
+                        -<a href="#">{$choose}</a>
+                    </if>
                 </div>
             </div>
             <div class="scd_m about">

@@ -11,9 +11,13 @@
     <div class="wrap scd clearfix">
         <div class="scd_l">
             <div class="s_top"><span>新闻中心</span></div>
+            <?php $menu = isset($menu_tree[MENU_NEWS]) ? $menu_tree[MENU_NEWS] : ''; ?>
+            <?php $choose = ''; ?>
             <ul class="s_nav">
-                <li><a href=""><i>&nbsp;</i><span>云秀新闻</span></a></li>
-                <li><a href=""><i>&nbsp;</i><span>行业动态</span></a></li>
+                <foreach name="menu" item="m">
+                    <li <?php echo isset($menu_id) && $menu_id == $m['id'] ? 'class="active"' : ''; ?>><a href="{:U('menu/menu', array('id' => $m['id']))}"><i>&nbsp;</i><span>{$m.name}</span></a></li>
+                    <?php if(isset($menu_id) && $menu_id == $m['id']) $choose = $m['name']; ?>
+                </foreach>
             </ul>
             <div class="space_hx">&nbsp;</div>
             <div class="s_search">
@@ -27,8 +31,11 @@
                 <span>新闻中心<em>News</em></span>
                 <div class="pst">
                     当前位置：
-                    <a href="">首页</a>-
-                    <a href="">新闻中心</a>
+                    <a href="{:U('index/index'}">首页</a>-
+                    <a href="{:U('menu/menu', array('id' => MENU_NEWS))}">新闻动态</a>
+                    <if condition="$choose neq ''">
+                        -<a href="#">{$choose}</a>
+                    </if>
                 </div>
             </div>
             <div class="scd_m news">

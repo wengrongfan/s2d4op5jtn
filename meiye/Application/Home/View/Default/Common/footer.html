@@ -3,9 +3,9 @@
 	<ul class="f_nav clearfix">
         <li>
         	<div class="name"><b>关于云秀国际</b></div>
-            <?php $menu_tree = isset($menu_tree[MENU_ABOUT]) ? $menu_tree[MENU_ABOUT] : ''; ?>
-            <foreach name="menu_tree" item="m">
-            <p><a target="_blank" href="{:U('menu/menu', array('id' => $m['id']))}">{$m.name}</a></p>
+            <?php $menu = isset($menu_tree[MENU_ABOUT]) ? $menu_tree[MENU_ABOUT] : ''; ?>
+            <foreach name="menu" item="m">
+                <p><a target="_blank" href="{:U('menu/menu', array('id' => $m['id']))}">{$m.name}</a></p>
             </foreach>
         </li>
         <li class="f_ct">

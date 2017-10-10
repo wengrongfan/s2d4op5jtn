@@ -38,13 +38,13 @@ class MenuController extends Controller {
             case C('MENU_ABOUT'):
             case C('MENU_NEWS'):
             case C('MENU_SERVICES'):
-                $this->redirect('Info/index/id/'.$id);
+                $this->redirect('Info/index', array('id' => $id));
                 break;
             case C('MENU_CONTACT'):
-                $this->redirect('Contact/index/id/'.$id);
+                $this->redirect('Contact/index', array('id' => $id));
                 break;
             case C('MENU_TEAM'):
-                $this->redirect('Team/index/id/'.$id);
+                $this->redirect('Team/index', array('id' => $id));
                 break;
             default :
                 //余下可按类型分发

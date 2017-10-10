@@ -12,4 +12,9 @@ class ContactController extends BaseController {
     {
         parent::_initialize();
     }
+
+    public function index($id)
+    {
+        $this->assign('menu_id', $id);
+    }
 }
