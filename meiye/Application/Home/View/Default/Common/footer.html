@@ -3,43 +3,46 @@
 	<ul class="f_nav clearfix">
         <li>
         	<div class="name"><b>关于云秀国际</b></div>
-            <p><a href="">了解我们</a></p>
-            <p><a href="">加入我们</a></p>
-            <p><a href="">联系我们</a></p>
+            <?php $menu_tree = isset($menu_tree[MENU_ABOUT]) ? $menu_tree[MENU_ABOUT] : ''; ?>
+            <foreach name="menu_tree" item="m">
+            <p><a target="_blank" href="{:U('menu/menu', array('id' => $m['id']))}">{$m.name}</a></p>
+            </foreach>
         </li>
         <li class="f_ct">
         	<div class="name"><b>联系方式</b></div>
             <p>
-            	<a href="mailto:1023102176@qq.com">
+            	<a href="mailto:{$web_info.mail}">
                 	<img src="__PUBLIC__/images/icon6.png" alt=""/>
-                    <span>邮箱:1023102176@qq.com</span>
+                    <span>邮箱:{$web_info.mail}</span>
                 </a>
             </p>
             <p>
-                <a href="tel:020-8888888">
+                <a href="tel:{$web_info.phone}">
                     <img src="__PUBLIC__/images/icon5.png" alt=""/>
-                    <span>坐机:020-8888888</span>
+                    <span>坐机:{$web_info.phone}</span>
                 </a>
             </p>
             <p>
-            	<a href="tel:1881946576">
+            	<a href="tel:{$web_info.mobile}">
                 	<img src="__PUBLIC__/images/icon5.png" alt=""/>
-                    <span>电话:1881946576</span>
+                    <span>电话:{$web_info.mobile}</span>
                 </a>
             </p>
         </li>
         <li class="dz">
         	<div class="name"><b>我们的位置</b></div>
             <p>广州市云秀国际有限公司<br/>
-xxxxxx xxxx Co. Ltd.</p>
+            xxxxxx xxxx Co. Ltd.</p>
 			<p>xxxxxxxxxxxxxxxxxxx</p>
         </li>
+        <?php if(isset($winxin_code) && $winxin_code != ''){ ?>
         <li class="f_ct" style="padding-right: 0px;margin-right: 0px;padding-left: 20px;">
             <div class="name" align="right"><b>“云秀国际”</b></div>
             <div align="right">
-                <img src="__PUBLIC__/images/erwei.png" width="100px" height="100px" alt=""/>
+                <img src="__PUBLIC__{$winxin_code}" width="100px" height="100px" alt=""/>
             </div>
         </li>
+        <?php } ?>
     </ul>
 </div>
 <div class="f_bg">
@@ -47,6 +50,6 @@ xxxxxx xxxx Co. Ltd.</p>
     	<div class="bq_l">
         	广州市云秀国际有限公司
         </div>
-        <div class="bq_r">2012-2017©版权所有“云秀国际”</div>
+        <div class="bq_r">2012-<?php echo date('Y'); ?>©版权所有“云秀国际”</div>
     </div>
 </div>

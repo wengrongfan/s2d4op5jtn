@@ -6,11 +6,11 @@
             <div class="n_icon">导航栏</div>
             <ul class="nav clearfix">
                 <li><a href="/">首页</a></li>
-                <li><a href="{:U('index/about')}">关于云秀</a></li>
-                <li><a href="{:U('index/team')}">云秀团队</a></li>
-                <li class="now"><a href="{:U('index/news')}">新闻动态</a></li>
-                <li><a href="{:U('index/service')}">云秀服务</a></li>
-                <li><a href="{:U('index/contact')}">联系我们</a></li>
+                <if condition="count($menu_tree) neq 0">
+                    <foreach name="menu_tree" item="m">
+                        <li <?php echo isset($_SESSION['m_id']) && $_SESSION['m_id'] == $m['id'] ? 'class="now"' : ''; ?> ><a href="{:U('menu/menu', array('id' => $m['id']))}">{$m.name}</a></li>
+                    </foreach>
+                </if>
             </ul>
         </div>
     </div>

@@ -30,6 +30,7 @@ class MenuController extends Controller {
             $m_type = $menu_list[$menu_list[$id]['column_leftid']]['column_type'];
         }
 
+        $_SESSION['m_id'] = $m_id;
         //InfoController处理单页和列表
         //ContactController处理联系我们
         //TeamController处理云秀团队

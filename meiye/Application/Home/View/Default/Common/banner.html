@@ -18,15 +18,11 @@ $(function(){
 <!--幻灯片-->
 <div id="banner" class="banner"> 
     <div id="owl-demo" class="owl-carousel"> 
-        <a class="item" target="_blank" href="" style="background-image:url(__PUBLIC__/static/banner10.png)">
-            <img src="__PUBLIC__/static/banner10.png" alt="">
+        <foreach name="banner_list" item="b">
+        <a class="item" target="_blank" href="{$b.url_target}" style="background-image:url(__PUBLIC__{$b.url_pic})">
+            <img src="__PUBLIC__{$b.url_pic}" alt="">
         </a>
-        <a class="item" target="_blank" href="" style="background-image:url(__PUBLIC__/static/banner.jpg)">
-            <img src="__PUBLIC__/static/banner.jpg" alt="">
-        </a>
-        <a class="item" target="_blank" href="" style="background-image:url(__PUBLIC__/static/banner.jpg)">
-            <img src="__PUBLIC__/static/banner.jpg" alt="">
-        </a>
+        </foreach>
     </div>
 </div>
 <!--幻灯片-->
