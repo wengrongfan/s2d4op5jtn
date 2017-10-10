@@ -83,7 +83,7 @@ class BaseController extends CommonController {
 	//banner信息，需要时才调用
 	public function banner() {
 
-		$media_list = M('media')->where(array('type' => c('MEDIA_BANNER_TYPE')))->order('sort')->select();
+		$media_list = M('media')->where(array('type' => C('MEDIA_BANNER_TYPE')))->order('sort')->select();
 		$this->assign('banner_list' , $media_list);
 	}
 }
