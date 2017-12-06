@@ -16,5 +16,6 @@ class ContactController extends BaseController {
     public function index($id)
     {
         $this->assign('menu_id', $id);
+        $this->display('main/contact');
     }
 }
