@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-09-23 05:32:14
+-- Generation Time: 2017-12-07 14:00:24
 -- 服务器版本： 5.7.14
 -- PHP Version: 7.0.10
 
@@ -45,7 +45,7 @@ CREATE TABLE `mr_admin` (
 --
 
 INSERT INTO `mr_admin` (`admin_id`, `admin_username`, `admin_pwd`, `admin_email`, `admin_realname`, `admin_tel`, `admin_hits`, `admin_ip`, `admin_addtime`, `admin_mdemail`, `admin_open`) VALUES
-(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1023102176@qq.com', 'Tot ziens', '18819489576', 249, '127.0.0.1', 112222233, '206125c6e7523ba7c0301144ac24eea9', 1),
+(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1023102176@qq.com', 'Tot ziens', '18819489576', 250, '127.0.0.1', 112222233, '206125c6e7523ba7c0301144ac24eea9', 1),
 (2, 'test', 'e10adc3949ba59abbe56e057f20f883e', '1023102176@qq.com', 'test', '18819489689', 25, '127.0.0.1', 1446683501, '206125c6e7523ba7c0301144ac24eea9', 1);
 
 -- --------------------------------------------------------
@@ -229,7 +229,7 @@ CREATE TABLE `mr_column` (
 
 INSERT INTO `mr_column` (`c_id`, `column_name`, `column_enname`, `column_type`, `column_leftid`, `column_address`, `column_open`, `column_order`, `column_title`, `column_key`, `column_des`, `column_content`) VALUES
 (1, '关于云秀', '', 1, 0, '', 1, 50, '', '', '', ''),
-(2, '企业介绍', NULL, 5, 1, '', 1, 50, '', '', '', '&lt;p&gt;企业文化&lt;/p&gt;'),
+(2, '企业介绍', NULL, 5, 1, '', 1, 50, '', '', '', '&lt;p&gt;企业介绍&lt;/p&gt;'),
 (3, '企业文化', NULL, 5, 1, '', 1, 50, '', '', '', '&lt;p&gt;&lt;span style=&quot;color: rgb(57, 57, 57); font-family: &amp;quot;Microsoft Yahei&amp;quot;; font-size: 13px; background-color: rgb(245, 245, 245);&quot;&gt;企业文化&lt;/span&gt;&lt;/p&gt;'),
 (4, '创始人', NULL, 5, 1, '', 1, 50, '', '', '', '&lt;p&gt;&lt;span style=&quot;color: rgb(57, 57, 57); font-family: &amp;quot;Microsoft Yahei&amp;quot;; font-size: 13px; background-color: rgb(245, 245, 245);&quot;&gt;创始人&lt;/span&gt;&lt;/p&gt;'),
 (6, '新闻动态', NULL, 1, 0, '', 1, 50, '', '', '', ''),
@@ -425,7 +425,7 @@ CREATE TABLE `mr_sys` (
 --
 
 INSERT INTO `mr_sys` (`sys_id`, `sys_name`, `sys_url`, `sys_title`, `sys_key`, `sys_des`, `sys_base`) VALUES
-(1, '数炼成精', 'http://www.maths-video.org.cn/', '数炼成精视频教学网', '数炼成精,大数据,数据分析,视频教学', '数炼成精视频教学网', '{"mobile":"3457782356","phone":"020-717263","mail":"1023102176@qq.com","address":"\\u8463\\u84c9\\u84c9"}');
+(1, '云绣国际美容有限公司', 'http://www.xxx.cn/', '云绣国际美容有限公司', '云绣国际,美容', '云绣国际美容有限公司', '{"mobile":"3457782356","phone":"020-717263","mail":"1023102176@qq.com","address":"\\u5e7f\\u5dde\\u5e02\\u73e0\\u6c5f\\u65b0\\u6751C\\u5ea7301-302\\u5ba4"}');
 
 --
 -- Indexes for dumped tables
