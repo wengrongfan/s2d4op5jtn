@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <title>{$web_info.sys_title}</title>
-<meta name="keywords" content="{$web_info.sys_key}">
-<meta name="description" content="{$web_info.sys_des}">
+<meta name="keywords" content="<?php echo isset($column['column_key']) && ! empty($column['column_key']) ? $column['column_key'] : $web_info['sys_key']; ?>">
+<meta name="description" content="<?php echo isset($column['column_des']) && ! empty($column['column_des']) ? $column['column_des'] : $web_info['sys_des']; ?>">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/assets/css/reset.css"/>
 <script type="text/javascript" src="__PUBLIC__/assets/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/assets/js/js_z.js"></script>
