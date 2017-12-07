@@ -11,7 +11,7 @@
     <div class="wrap scd clearfix">
         <div class="scd_l">
             <div class="s_top"><span>关于云绣</span></div>
-            <?php $menu = isset($menu_tree[1]) ? $menu_tree[1] : ''; ?>
+            <?php $menu = isset($menu_tree[$p_id]) ? $menu_tree[$p_id] : ''; ?>
             <?php $choose = ''; ?>
             <ul class="s_nav">
                 <foreach name="menu['children']" item="m">

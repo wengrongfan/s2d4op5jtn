@@ -40,7 +40,7 @@
     <div class="wrap scd clearfix">
         <div class="scd_l">
             <div class="s_top"><span>关于云绣</span></div>
-            <?php $menu = isset($menu_tree[1]) ? $menu_tree[1] : ''; ?>
+            <?php $menu = isset($menu_tree[$p_id]) ? $menu_tree[$p_id] : ''; ?>
             <?php $choose = ''; ?>
             <ul class="s_nav">
                 <?php if(is_array($menu['children'])): foreach($menu['children'] as $key=>$m): ?><li <?php echo isset($menu_id) && $menu_id == $m['id'] ? 'class="active"' : ''; ?>><a href="<?php echo U('menu/menu', array('id' => $m['id']));?>"><i>&nbsp;</i><span><?php echo ($m["name"]); ?></span></a></li>

@@ -25,6 +25,12 @@ class InfoController extends BaseController {
         if($column['column_leftid'] == 0)
         {
             $column = D('column')->where(array('column_leftid' => $column['c_id'], 'column_open' => 1))->find();
+            $this->assign('p_id', $id);
+        }
+        else
+        {
+            $parent = D('column')->where(array('c_id' => $column['column_leftid'], 'column_open' => 1))->find();
+            $this->assign('p_id', $parent['c_id']);
         }
 
         if($column['column_type'] != 5)
