@@ -20,7 +20,7 @@ $(function(){
     <div id="owl-demo" class="owl-carousel"> 
         <foreach name="banner_list" item="b">
         <a class="item" target="_blank" href="{$b.url_target}" style="background-image:url(__PUBLIC__{$b.url_pic})">
-            <img src="__PUBLIC__{$b.url_pic}" alt="">
+            <img src="__PUBLIC__{$b.url_pic}" style="max-height: 400px;" alt="">
         </a>
         </foreach>
     </div>

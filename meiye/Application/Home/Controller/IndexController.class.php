@@ -30,6 +30,9 @@ class IndexController extends BaseController {
 			$this->assign('about', $about);
 		}
 
+		//首页调用banner
+		parent::banner();
+
 		$_SESSION['m_id'] = 0;//清除菜单选中
 		$this->display('index');
 	}
