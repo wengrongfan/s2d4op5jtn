@@ -15,6 +15,10 @@ class TeamController extends BaseController {
 
     public function index($id)
     {
+        $staff_list = D('staff')->where(array('staff_status' => 1))->order('id ASC')->select();
+
+        $this->assign('staff_list', $staff_list);
         $this->assign('menu_id', $id);
+        $this->display('main/team');
     }
 }

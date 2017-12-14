@@ -24,11 +24,11 @@
         <div class="scd_r">
             <div class="r_top">
                 <i>&nbsp;</i>
-                <span>公司简介<em>Introduction</em></span>
+                <span><?php echo $_SESSION['m_name']; ?><em>Introduction</em></span>
                 <div class="pst">
                     当前位置：
                     <a href="{:U('index/index')}">首页</a>-
-                    <a href="{:U('menu/menu', array('id' => 1))}">关于云绣</a>
+                    <a href="{:U('menu/menu', array('id' => 1))}"><?php echo $_SESSION['m_name']; ?></a>
                     <if condition="$choose neq ''">
                         -<a href="#">{$choose}</a>
                     </if>

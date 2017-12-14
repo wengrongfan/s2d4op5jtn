@@ -23,14 +23,17 @@ class MenuController extends Controller {
         }
 
         $m_id = $id;
+        $m_name = $menu_list[$id]['column_name'];
         $m_type = $menu_list[$id]['column_type'];
         //找到它的父类
         if($menu_list[$id]['column_leftid'] > 0) {
             $m_id = $menu_list[$id]['column_leftid'];
+            $m_name = $menu_list[$menu_list[$id]['column_leftid']]['column_name'];
             $m_type = $menu_list[$menu_list[$id]['column_leftid']]['column_type'];
         }
 
         $_SESSION['m_id'] = $m_id;
+        $_SESSION['m_name'] = $m_name;
         //InfoController处理单页和列表
         //ContactController处理联系我们
         //TeamController处理云秀团队

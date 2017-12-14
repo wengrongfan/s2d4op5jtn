@@ -9,37 +9,20 @@
 <div class="space_hx">&nbsp;</div>
 <div class="scd scd_a clearfix">
 	<div class="pro">
-<!--         <dl class="clearfix">
-        	<dt><a href=""><img src="__PUBLIC__/static/pic7.jpg" alt=""/></a></dt>
-            <dd>
-            	<div class="name"><a href="">无人机型号：虎蝠</a></div>
-                <div class="des">替代传统的地面控制点技术，安行无人机通过整合RTK定位技术和精密测时技术来确定每一张航拍相片的精确位置。</div>
-                <div class="more"><a href="">查看详情</a></div>
-                <div class="time"><span>2015/12/10</span></div>
-            </dd>
-        </dl> -->
-    <div class="index-main-title">
+    <div class="index-main-title" style="padding: 10px 0;">
         <p>团队成员</p>
-        <span>提供专业的美容服务</span>
+        <span>专业的团队、专业的技术</span>
     </div>
     <div class="index-main-md-body">
         <ul>
-            <li>
-                <div class="team_cy"><img src="__PUBLIC__/static/team1.jpg"></div>
-                <p class="name">JERRY</p>
-                <p>高级工程师</p><span>这是一段很长很长的个人介绍。。。。。。。。。。这是一段很长很长的个人介绍。。。。。。。。。。</span></li>
-            <li>
-                <div class="team_cy"><img src="__PUBLIC__/static/team2.jpg"></div>
-                <p class="name">李美娜</p>
-                <p>工程师</p><span>这是一段很长很长的个人介绍。。。。。。。。。。这是一段很长很长的个人介绍。。。。。。。。。。</span></li>
-            <li>
-                <div class="team_cy"><img src="__PUBLIC__/static/team3.jpg"></div>
-                <p class="name">保罗</p>
-                <p>环境测试员</p><span>这是一段很长很长的个人介绍。。。。。。。。。。这是一段很长很长的个人介绍。。。。。。。。。。</span></li>
+            <foreach name="staff_list" item="v">
                 <li>
-                <div class="team_cy"><img src="__PUBLIC__/static/team3.jpg"></div>
-                <p class="name">保罗</p>
-                <p>环境测试员</p><span>这是一段很长很长的个人介绍。。。。。。。。。。这是一段很长很长的个人介绍。。。。。。。。。。</span></li>
+                    <div class="team_cy"><img width="250" height="200" src="__PUBLIC__{$v.staff_pic}"></div>
+                    <p class="name">{$v.staff_name}</p>
+                    <p>{$v.staff_position}</p>
+                    <span style="margin-top: 0.5rem;color:#555;">{$v.staff_description}</span>
+                </li>
+            </foreach>
         </ul>
     </div>
     </div>
