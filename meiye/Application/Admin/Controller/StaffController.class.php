@@ -66,10 +66,14 @@ class StaffController extends AuthController {
     		$upload->savePath  =     ''; // 设置附件上传（子）目录
     		$upload->saveRule  =     'time';
     		$info   =   $upload->upload();
-    		$img_url="";
-    		if($info) {
-    			foreach($info as $file){
+    		$img_url='';
+    		if($info)
+            {
+    			foreach($info as $file)
+                {
     				$img_url='/uploads/'.$file['savepath'].$file['savename'];//如果上传成功则完成路径拼接
+
+                    parent::createThumb($upload->rootPath.$file['savepath'].$file['savename'], 600, 420);
     			}
     		}
 

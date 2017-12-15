@@ -8,7 +8,7 @@ class IndexController extends BaseController {
 	/*
 	 * 公共方法
 	 */
-	Public function _initialize()
+	public function _initialize()
 	{
 		parent::_initialize();
 	}
@@ -16,10 +16,6 @@ class IndexController extends BaseController {
 	//首页
 	public function index()
 	{
-		//$Page  = new \Think\Page($total , C('DB_PAGENUM_20') , $page_map);// 实例化分页类 传入总记录数和每页显示的记录数
-		//$show  = $Page->show();// 分页显示输出
-		//$this->assign('page' , $show);
-
 		//首页关于云绣介绍，关于云绣下的单页模式下为开启状态排序最低的一条
 		$about = D('column')->where(array('column_leftid' => 1, 'column_open' => 1))->order('column_order ASC')->limit(1)->find();
 		if( ! empty($about))

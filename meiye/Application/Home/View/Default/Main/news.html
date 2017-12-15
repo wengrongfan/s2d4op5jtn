@@ -11,19 +11,21 @@
     <div class="wrap scd clearfix">
         <div class="scd_l">
             <div class="s_top"><span>新闻中心</span></div>
-            <?php $menu = isset($menu_tree[MENU_NEWS]) ? $menu_tree[MENU_NEWS] : ''; ?>
+            <?php $menu = isset($menu_tree[6]) ? $menu_tree[6] : ''; ?>
             <?php $choose = ''; ?>
             <ul class="s_nav">
-                <foreach name="menu" item="m">
+                <foreach name="menu['children']" item="m">
                     <li <?php echo isset($menu_id) && $menu_id == $m['id'] ? 'class="active"' : ''; ?>><a href="{:U('menu/menu', array('id' => $m['id']))}"><i>&nbsp;</i><span>{$m.name}</span></a></li>
                     <?php if(isset($menu_id) && $menu_id == $m['id']) $choose = $m['name']; ?>
                 </foreach>
             </ul>
             <div class="space_hx">&nbsp;</div>
+            <form id="search-form" method="post" action="{:U('Info/list_view')}">
             <div class="s_search">
-                <input name="" type="text" value="请您输入搜索内容" onfocus="if (this.value == '请您输入搜索内容') {this.value = '';this.style.color='#333'}" onblur="if (this.value == '') {this.value = '请您输入搜索内容';this.style.color='#999'}">
-                <input name="" type="submit" class="btn" value="">
+                <input name="keyword" type="text" value="请您输入搜索内容" onfocus="if (this.value == '请您输入搜索内容') {this.value = '';this.style.color='#333'}" onblur="if (this.value == '') {this.value = '请您输入搜索内容';this.style.color='#999'}">
+                <input type="submit" class="btn" value="">
             </div>
+            </form>
         </div>
         <div class="scd_r">
             <div class="r_top">
@@ -31,85 +33,39 @@
                 <span>新闻中心<em>News</em></span>
                 <div class="pst">
                     当前位置：
-                    <a href="{:U('index/index'}">首页</a>-
-                    <a href="{:U('menu/menu', array('id' => MENU_NEWS))}">新闻动态</a>
+                    <a href="{:U('index/index')}">首页</a>-
+                    <a href="{:U('menu/menu', array('id' => 6))}"><?php echo $_SESSION['m_name']; ?></a>
                     <if condition="$choose neq ''">
                         -<a href="#">{$choose}</a>
                     </if>
                 </div>
             </div>
             <div class="scd_m news">
+                <foreach name="news_list" item="v">
                 <dl class="clearfix">
-                    <dt><a href=""><img src="__PUBLIC__/static/pic3.jpg" alt=""/></a></dt>
+                    <dt>
+                        <a href="{:U('Info/view', array('id' => $v['n_id']))}">
+                            <img src="__PUBLIC__/<?php echo empty($v['news_img']) ? 'images/nopic.png' : $v['news_img']; ?>" width="260" height="130" alt=""/>
+                        </a>
+                    </dt>
                     <dd>
-                        <div class="title"><a href="">这是一条新闻一条新闻一条新闻一条新闻一条新闻。</a></div>
-                        <div class="ctn">这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。</div>
+                        <div class="title"><a href="{:U('Info/view', array('id' => $v['n_id']))}">{$v.news_title}</a></div>
+                        <div class="ctn">
+                            {$v.news_content|html_entity_decode|strip_tags|subtext=180}
+                        </div>
                         <div class="time">
-                            公司新闻
-                            <span>2017-09-04</span>
+                            [<?php echo isset($id2name[$v['news_columnid']]) ? $id2name[$v['news_columnid']] : '未知'; ?>]
+                            <span><?php echo date('Y-m-d', $v['news_time']); ?></span>
                         </div>
                     </dd>
                 </dl>
-                <dl class="clearfix">
-                    <dt><a href=""><img src="__PUBLIC__/static/pic3.jpg" alt=""/></a></dt>
-                    <dd>
-                        <div class="title"><a href="">这是一条新闻一条新闻一条新闻一条新闻一条新闻。</a></div>
-                        <div class="ctn">这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。</div>
-                        <div class="time">
-                            公司新闻
-                            <span>2017-09-04</span>
-                        </div>
-                    </dd>
-                </dl>
-                <dl class="clearfix">
-                    <dt><a href=""><img src="__PUBLIC__/static/pic3.jpg" alt=""/></a></dt>
-                    <dd>
-                        <div class="title"><a href="">这是一条新闻一条新闻一条新闻一条新闻一条新闻。</a></div>
-                        <div class="ctn">这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。</div>
-                        <div class="time">
-                            公司新闻
-                            <span>2017-09-04</span>
-                        </div>
-                    </dd>
-                </dl>
-                <dl class="clearfix">
-                    <dt><a href=""><img src="__PUBLIC__/static/pic3.jpg" alt=""/></a></dt>
-                    <dd>
-                        <div class="title"><a href="">这是一条新闻一条新闻一条新闻一条新闻一条新闻。</a></div>
-                        <div class="ctn">这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。</div>
-                        <div class="time">
-                            公司新闻
-                            <span>2017-09-04</span>
-                        </div>
-                    </dd>
-                </dl>
-                <dl class="clearfix">
-                    <dt><a href=""><img src="__PUBLIC__/static/pic3.jpg" alt=""/></a></dt>
-                    <dd>
-                        <div class="title"><a href="">这是一条新闻一条新闻一条新闻一条新闻一条新闻。</a></div>
-                        <div class="ctn">这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。这是一条新闻一条新闻一条新闻一条新闻一条新闻。</div>
-                        <div class="time">
-                            公司新闻
-                            <span>2017-09-04</span>
-                        </div>
-                    </dd>
-                </dl>
+                </foreach>
+                <empty name="news_list">
+                    暂无内容！
+                </empty>
                 <!-- <div class="space_hx">&nbsp;</div> -->
                 <div class="pages">
-                    <a href="">首页</a>
-                    <a href="">上一页</a>
-                    <a href="" class="on">[1]</a>
-                    <a href="">[2]</a>
-                    <a href="">[3]</a>
-                    <a href="">[4]</a>
-                    <a href="">[5]</a>
-                    <a href="">[6]</a>
-                    <a href="">[7]</a>
-                    <a href="">[8]</a>
-                    <a href="">[9]</a>
-                    <a href="">[10]</a>
-                    <a href="">下一页</a>
-                    <a href="">尾页</a>
+                    {$page}
                 </div>
             </div>
         </div>

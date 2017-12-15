@@ -101,10 +101,10 @@
                                                 <foreach name="news" item="v">
 													<tr>
 														<td align="center">
-														<label class="pos-rel">
-															<input name='n_id[]' id="navid" class="ace"  type='checkbox' value='{$v.n_id}'>
-														<span class="lbl"></span>
-														</label>
+															<label class="pos-rel">
+																<input name='n_id[]' id="navid" class="ace"  type='checkbox' value='{$v.n_id}'>
+															<span class="lbl"></span>
+															</label>
 														</td>
 														<td align="center">{$v.n_id}</td>
 														<td><a href="javascript:void(0);" target="_blank" title="{$v.news_title}">{$v.news_title|subtext=25}</a>【{$v.news_auto}】</td>
@@ -112,15 +112,15 @@
 														<td>{$v.news_hits}</td>
 														<td>
 														<if condition='$v[news_open] eq 1'>
-														<a class="red" href="javascript:;" onclick="return stateyes({$v.n_id});" title="已开启">
-														<div id="zt{$v.n_id}"><button class="btn btn-minier btn-yellow">开启</button></div>
-														</a>
+															<a class="red" href="javascript:;" onclick="return stateyes({$v.n_id});" title="已开启">
+																<div id="zt{$v.n_id}"><button class="btn btn-minier btn-yellow">开启</button></div>
+															</a>
 														<else/>
-														<a class="red" href="javascript:;" onclick="return stateyes({$v.n_id});" title="已禁用">
-														<div id="zt{$v.n_id}"><button class="btn btn-minier btn-danger">禁用</button></div>
-														</a>
+															<a class="red" href="javascript:;" onclick="return stateyes({$v.n_id});" title="已禁用">
+																<div id="zt{$v.n_id}"><button class="btn btn-minier btn-danger">禁用</button></div>
+															</a>
 														</if>
-														</td>
+															</td>
 														<td>{$v.news_time|date='Y-m-d',###}</td>
 														<td>
 		<div class="action-buttons">

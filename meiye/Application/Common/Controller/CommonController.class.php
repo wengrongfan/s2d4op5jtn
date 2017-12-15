@@ -37,16 +37,18 @@ class CommonController extends Controller{
      * *生成缩略图
      * @return Boolean          [description]
      */
-    public function createThumb($path)
+    public function createThumb($path, $width = '', $height = '')
     {
-        if($path == '')
-        {
-            return FALSE;
-        }
-
         $image = new \Think\Image();
         $image->open($path);
-        $image->thumb(C('SOFT_THUMB_WIDTH') , C('SOFT_THUMB_HEIGHT') , $image::IMAGE_THUMB_FIXED);
+        if(empty($width) && empty($height))
+        {
+            $image->thumb(C('SOFT_THUMB_WIDTH'), C('SOFT_THUMB_HEIGHT'), $image::IMAGE_THUMB_FIXED);
+        }
+        else
+        {
+            $image->thumb($width, $height, $image::IMAGE_THUMB_FIXED);
+        }
         $image->save($path);
         return $path;
     }

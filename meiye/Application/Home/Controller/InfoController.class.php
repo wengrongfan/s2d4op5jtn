@@ -33,13 +33,70 @@ class InfoController extends BaseController {
             $this->assign('p_id', $parent['c_id']);
         }
 
-        if($column['column_type'] != 5)
-        {
-            $this->error('栏目类型错误！本页不支持该栏目类型！');
-        }
-
         $this->assign('column', $column);
         $this->assign('menu_id', $id);
-        $this->display('main/about');
+
+        switch ($column['column_type'])
+        {
+            case 4:
+                $this->error('栏目类型错误！本页不支持该栏目类型！');
+                break;
+            case 2:
+                if(empty($column['column_address']))
+                {
+                    $this->error('跳转链接不存在！');
+                }
+
+                header('Location: '.$column['column_address']);
+                break;
+            //列表
+            case 3:
+                $this->list_view($column['c_id']);
+                break;
+            default:
+                $this->display('main/about');
+                break;
+        }
+    }
+
+    public function list_view($column_id = 0)
+    {
+        $keyword = I('keyword', TRUE);
+
+        $map = array();
+        if( ! empty($keyword))
+        {
+            $map['news_title'] = array('like',"%".$keyword."%");
+            $map['news_titleshort'] = array('like',"%".$keyword."%");
+            $map['news_key'] = array('like',"%".$keyword."%");
+            $where['_logic'] = 'or';
+        }
+
+        if($column_id > 0)
+        {
+            $map['news_columnid'] = $column_id;
+        }
+        $map['news_open'] = 1;
+        //$this->assign('keyword', $keyword);
+
+        $total = D('news')->where($map)->count();
+        $Page = new \Think\Page($total , C('DB_PAGENUM_20'));
+        $news_list = D('news')->where($map)->limit($Page->firstRow.','.$Page->listRows)->order('n_id DESC')->select();
+        $show = $Page->show();
+        $this->assign('page' , $show);
+        $this->assign('news_list', $news_list);
+
+        $column_list = D('column')->where('column_leftid > 0 AND column_open = 1')->select();
+        $id2name = array();
+        if( ! empty($column_list))
+        {
+            foreach ($column_list as $v)
+            {
+                $id2name[$v['c_id']] = $v['column_name'];
+            }
+        }
+
+        $this->assign('id2name', $id2name);
+        $this->display('main/news');
     }
 }
