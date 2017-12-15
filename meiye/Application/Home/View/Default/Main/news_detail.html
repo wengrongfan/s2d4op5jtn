@@ -1,17 +1,25 @@
 <include file='Default:Common:header' />
 
 <include file='Default:Common:menu' />
-
+<style type="text/css">
+.scd_m h4 {
+    color: #333;
+    line-height: 40px;
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+</style>
 <!--幻灯片-->
 <div class="banner banner_s">
 	<img src="__PUBLIC__/static/banner_a.jpg" alt=""/>
 </div>
 <!--幻灯片-->
 <div class="space_hx">&nbsp;</div>
-    <div class="wrap scd clearfix">
+    <div class="wrap scd clearfix" style="padding: 0 0 0px;">
         <div class="scd_l">
-            <div class="s_top"><span>关于云绣</span></div>
-            <?php $menu = isset($menu_tree[$p_id]) ? $menu_tree[$p_id] : ''; ?>
+            <div class="s_top"><span>新闻动态</span></div>
+            <?php $menu = isset($menu_tree[6]) ? $menu_tree[6] : ''; ?>
             <?php $choose = ''; ?>
             <ul class="s_nav">
                 <foreach name="menu['children']" item="m">
@@ -35,7 +43,12 @@
                 </div>
             </div>
             <div class="scd_m about">
-                {$column.column_content|htmlspecialchars_decode}
+                <h4>{$news.news_title}</h4>
+                <div style="text-indent:2em;">
+                    {$news.news_content|htmlspecialchars_decode}
+                </div>
+                <br/>
+                <p style="text-align: center;">发布时间：<?php echo date('Y-m-d H:i', $news['news_time']); ?>,发布者：{$news.news_auto},浏览量：{$news.news_hits}</p>
             </div>
         </div>
     </div>

@@ -99,4 +99,20 @@ class InfoController extends BaseController {
         $this->assign('id2name', $id2name);
         $this->display('main/news');
     }
+
+    public function view($id)
+    {
+        $news = D('news')->where(array('n_id' => $id))->find();
+        if(empty($news) OR $news['news_open'] != 1)
+        {
+            $this->error('信息不存在或者审核未通过！');
+        }
+
+        //点击加1
+        D('news')->where(array('n_id' => $id))->setInc('news_hits', 1);
+
+        $this->assign('menu_id', $news['news_columnid']);
+        $this->assign('news', $news);
+        $this->display('main/news_detail');
+    }
 }

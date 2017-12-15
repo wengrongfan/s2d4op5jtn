@@ -36,7 +36,7 @@
                     <a href="{:U('index/index')}">首页</a>-
                     <a href="{:U('menu/menu', array('id' => 6))}"><?php echo $_SESSION['m_name']; ?></a>
                     <if condition="$choose neq ''">
-                        -<a href="#">{$choose}</a>
+                        -{$choose}
                     </if>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="time">
                             [<?php echo isset($id2name[$v['news_columnid']]) ? $id2name[$v['news_columnid']] : '未知'; ?>]
-                            <span><?php echo date('Y-m-d', $v['news_time']); ?></span>
+                            <span><?php echo date('Y-m-d H:i', $v['news_time']); ?></span>
                         </div>
                     </dd>
                 </dl>

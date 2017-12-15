@@ -20,9 +20,8 @@ class IndexController extends BaseController {
 		$about = D('column')->where(array('column_leftid' => 1, 'column_open' => 1))->order('column_order ASC')->limit(1)->find();
 		if( ! empty($about))
 		{
-			$about = html_entity_decode($about['column_content']);
-			//去除图片和html标签
-			$about = strip_tags(preg_replace('/<img.*[^>]>/', '', $about));
+			//去除html标签
+			$about = strip_tags(html_entity_decode($about['column_content']));
 			$this->assign('about', $about);
 		}
 
