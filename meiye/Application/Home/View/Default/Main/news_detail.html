@@ -49,6 +49,25 @@
                 </div>
                 <br/>
                 <p style="text-align: center;">发布时间：<?php echo date('Y-m-d H:i', $news['news_time']); ?>,发布者：{$news.news_auto},浏览量：{$news.news_hits}</p>
+                <br/>
+                <ul class="prev_next clearfix">
+                    <li><b>上一篇：</b>
+                        <notempty name="last">
+                            <a href="{:U('Info/view', array('id' => $last['n_id']))}">{$last.news_title}</a>
+                        </notempty>
+                        <empty name="last">
+                            暂无内容！
+                        </empty>
+                    </li>
+                    <li><b>下一篇：</b>
+                        <notempty name="next">
+                            <a href="{:U('Info/view', array('id' => $next['n_id']))}">{$next.news_title}</a>
+                        </notempty>
+                        <empty name="next">
+                            暂无内容！
+                        </empty>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

@@ -27,6 +27,7 @@
             </div>
             </form>
         </div>
+
         <div class="scd_r">
             <div class="r_top">
                 <i>&nbsp;</i>
@@ -49,9 +50,13 @@
                         </a>
                     </dt>
                     <dd>
-                        <div class="title"><a href="{:U('Info/view', array('id' => $v['n_id']))}">{$v.news_title}</a></div>
+                        <div class="title"><a href="{:U('Info/view', array('id' => $v['n_id']))}"><b>{$v.news_title}</b></a></div>
                         <div class="ctn">
-                            {$v.news_content|html_entity_decode|strip_tags|subtext=180}
+                            <?php if(empty($v['news_scontent'])){ ?>
+                                {$v.news_content|html_entity_decode|strip_tags|subtext=180}
+                            <?php }else{ ?>
+                                {$v.news_scontent|html_entity_decode|strip_tags|subtext=180}
+                            <?php } ?>
                         </div>
                         <div class="time">
                             [<?php echo isset($id2name[$v['news_columnid']]) ? $id2name[$v['news_columnid']] : '未知'; ?>]
@@ -66,6 +71,7 @@
                 <!-- <div class="space_hx">&nbsp;</div> -->
                 <div class="pages">
                     {$page}
+                    <div class="clearfix"></div>
                 </div>
             </div>
         </div>

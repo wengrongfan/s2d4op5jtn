@@ -61,7 +61,7 @@ class InfoController extends BaseController {
 
     public function list_view($column_id = 0)
     {
-        $keyword = I('keyword', TRUE);
+        $keyword = I('keyword');
 
         $map = array();
         if( ! empty($keyword))
@@ -102,15 +102,21 @@ class InfoController extends BaseController {
 
     public function view($id)
     {
-        $news = D('news')->where(array('n_id' => $id))->find();
+        $news_model = D('news');
+        $news = $news_model->where(array('n_id' => $id))->find();
         if(empty($news) OR $news['news_open'] != 1)
         {
             $this->error('信息不存在或者审核未通过！');
         }
 
         //点击加1
-        D('news')->where(array('n_id' => $id))->setInc('news_hits', 1);
+        $news_model->where(array('n_id' => $id))->setInc('news_hits', 1);
 
+        $last = $news_model->where('news_columnid = '.$news['news_columnid'].' AND n_id > '.$id.' AND news_open = 1')->order('n_id ASC')->find();
+        $next = $news_model->where('news_columnid = '.$news['news_columnid'].' AND n_id < '.$id.' AND news_open = 1')->order('n_id DESC')->find();
+
+        $this->assign('next', $next);
+        $this->assign('last', $last);
         $this->assign('menu_id', $news['news_columnid']);
         $this->assign('news', $news);
         $this->display('main/news_detail');

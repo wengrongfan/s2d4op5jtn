@@ -151,14 +151,14 @@ a:hover{ color:#044FA3;}
 /*.pages{ width:100%; text-align:center; }
 .pages a{ display:inline-block; *display:inline; zoom:1; height:30px; line-height:30px; vertical-align:top; margin:0 3px;}
 .pages a.on{ color:#006BB4;}*/
-.news dl{ width:100%; margin-bottom:30px;}
+.news dl{ width:100%; margin-bottom:30px;border-bottom: 1px solid #ddd;}
 .news dl dt,.news dl dt img{ width:264px; height:178px; float:left; vertical-align:top;}
 .news dl dd{ width:570px; float:right;}
 .news dl dd .title{ width:100%; height:30px; line-height:30px; margin-bottom:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:16px; }
 .news dl dd .title a{color:#2D2D2D;}
 .news dl dd .title a:hover{ color:#006BB4;}
 .news dl dd .ctn{ width:100%; height:90px; font-size:12px; color:#737373; overflow:hidden; line-height:185%;}
-.news dl dd .time{ width:100%; margin-top:12px; height:35px; line-height:35px; border-top:1px solid #ddd; border-bottom:1px solid #ddd; position:relative; font-size:12px; color:#E02040;}
+.news dl dd .time{ width:100%; margin-top:12px; height:35px; line-height:35px; border-top:1px solid #ddd; position:relative; font-size:12px; color:#E02040;}
 .news dl dd .time span{ display:inline-block; *display:inline; zoom:1; font-size:12px; position:absolute; right:0; top:0; color:#333;}
 
 
