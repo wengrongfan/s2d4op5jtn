@@ -66,10 +66,11 @@ class InfoController extends BaseController {
         $map = array();
         if( ! empty($keyword))
         {
-            $map['news_title'] = array('like',"%".$keyword."%");
-            $map['news_titleshort'] = array('like',"%".$keyword."%");
-            $map['news_key'] = array('like',"%".$keyword."%");
+            $where['news_title'] = array('like',"%".$keyword."%");
+            $where['news_titleshort'] = array('like',"%".$keyword."%");
+            $where['news_key'] = array('like',"%".$keyword."%");
             $where['_logic'] = 'or';
+            $map['_complex'] = $where;
         }
 
         if($column_id > 0)
@@ -77,7 +78,6 @@ class InfoController extends BaseController {
             $map['news_columnid'] = $column_id;
         }
         $map['news_open'] = 1;
-        //$this->assign('keyword', $keyword);
 
         $total = D('news')->where($map)->count();
         $Page = new \Think\Page($total , C('DB_PAGENUM_20'));
