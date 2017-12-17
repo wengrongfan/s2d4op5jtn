@@ -11,7 +11,7 @@
     <div class="wrap scd clearfix">
         <div class="scd_l">
             <div class="s_top"><span>新闻中心</span></div>
-            <?php $menu = isset($menu_tree[6]) ? $menu_tree[6] : ''; ?>
+            <?php $menu = isset($menu_tree[C('MENU_NEWS')]) ? $menu_tree[C('MENU_NEWS')] : ''; ?>
             <?php $choose = ''; ?>
             <ul class="s_nav">
                 <foreach name="menu['children']" item="m">

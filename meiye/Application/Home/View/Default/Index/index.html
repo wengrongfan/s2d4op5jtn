@@ -17,43 +17,21 @@
     <div class="index_i_news">
         <div class="top">
             <em>&nbsp;</em>新闻动态
-            <a href="">更多新闻</a>
+            <a href="{:U('menu/menu', array('id' => C('MENU_NEWS')))}">更多新闻</a>
         </div>
         <div class="i_m">
             <div id="scrollbar1">
                 <div class="">
                     <div class="content">
                         <ul>
+                            <foreach name="news_list" item="v">
                             <li>
-                                <div class="time">2016-05-13</div>
+                                <div class="time"><?php echo date('Y-d-m H:i', $v['news_time']); ?></div>
                                 <div class="title">
-                                    <a href="">云绣获得广州天河区百强企业荣誉称号</a>
+                                    <a href=""><?php echo ! empty($v['news_titleshort']) ? subtext($v['news_titleshort'], 35) : subtext($v['news_title'], 35); ?></a>
                                 </div>
                             </li>
-                            <li>
-                                <div class="time">2016-05-13</div>
-                                <div class="title">
-                                    <a href="">云绣将为美容美业贡献力量，致力于为爱美女士..</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="time">2016-05-13</div>
-                                <div class="title">
-                                    <a href="">云绣将亮相在"广州会展中心"举办的"国际美容展"。</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="time">2016-05-13</div>
-                                <div class="title">
-                                    <a href="">云绣将为美容美业贡献力量。</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="time">2016-05-13</div>
-                                <div class="title">
-                                    <a href="">云绣将为美容美业贡献力量。</a>
-                                </div>
-                            </li>
+                            </foreach>
                         </ul>
                     </div>
                 </div>
