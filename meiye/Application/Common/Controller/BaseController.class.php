@@ -86,4 +86,10 @@ class BaseController extends CommonController {
 		$media_list = M('media')->where(array('type' => C('MEDIA_BANNER_TYPE')))->order('sort')->select();
 		$this->assign('banner_list' , $media_list);
 	}
+
+	public function assignList($list = array()){
+	    foreach ($list as $key=>$value){
+	        $this->assign($key,$value);
+        }
+    }
 }

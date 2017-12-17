@@ -12,6 +12,13 @@ return array (
 'MENU_SERVICES' => 9,
 'MENU_CONTACT' => 13,
 'MENU_TEAM' => 14,
+
+'CONTENT_INTRODUCE' => 2,
+'CONTENT_CULTURE' => 3,
+'CONTENT_PRODUCER' => 4,
+'CONTENT_FACE' => 10,
+'CONTENT_BODY' => 11,
+'CONTENT_HEALTHY' => 12,
 );
 
 return array_merge(include './Conf/config.php', $config);

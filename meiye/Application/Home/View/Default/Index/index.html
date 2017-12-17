@@ -10,7 +10,7 @@
         <dl class="clearfix">
             <dt><a href=""><img src="__PUBLIC__/static/pic_1.jpg" alt=""/></a></dt>
             <dd style="text-indent: 2em;">
-            <?php echo isset($about) ? $about : '暂无内容！'; ?>
+            <?php echo isset($about['column_content']) ? $about['column_content'] : '暂无内容！'; ?>
             </dd>
         </dl>
     </div>
@@ -54,45 +54,45 @@
         </div>
     <ul class="i_ma clearfix" style="background">
         <li>
-            <a href="">
+            <a href="{:U('Info/index', array('id' => C('CONTENT_PRODUCER')))}">
                 <img src="__PUBLIC__/static/pic1.jpg" alt=""/>
             </a>
             <div class="title">
-                <a href=""><em>01.</em>xxxx</a>
+                <a href="{:U('Info/index', array('id' => C('CONTENT_PRODUCER')))}"><em>01.</em><?php echo $producer['column_name']; ?></a>
             </div>
-            <div class="des">以传播美丽之道为目标，是一家以美容护肤保养品与美容院为主，集研发、生产一体的企业。</div>
-            <!-- 旗下已形成三大疗程多个系列的成熟护肤体系，秉持以“医学为本、美容为用”的多元化专业护肤理念，产品以其亲肤、护肤、活肤的显著功效成为护肤品中的佼佼者。...... -->
-            <div class="more"><a href="">MORE</a></div>
+            <div class="des"><?php echo isset($producer['column_content']) ? mb_substr($producer['column_content'],0,40,'utf-8'): '暂无内容！'; ?>....</div>
+            <!--以传播美丽之道为目标，是一家以美容护肤保养品与美容院为主，集研发、生产一体的企业。 旗下已形成三大疗程多个系列的成熟护肤体系，秉持以“医学为本、美容为用”的多元化专业护肤理念，产品以其亲肤、护肤、活肤的显著功效成为护肤品中的佼佼者。...... -->
+            <div class="more"><a href="{:U('Info/index', array('id' => C('CONTENT_PRODUCER')))}">MORE</a></div>
         </li>
         <li>
-            <a href="">
+            <a href="{:U('Info/index', array('id' => C('CONTENT_CULTURE')))}">
                 <img src="__PUBLIC__/static/pic2.jpg" alt=""/>
             </a>
             <div class="title">
-                <a href=""><em>02.</em>企业文化</a>
+                <a href="{:U('Info/index', array('id' => C('CONTENT_CULTURE')))}"><em>02.</em><?php echo $culture['column_name']; ?></a>
             </div>
-            <div class="des">以传播美丽之道为目标，是一家以美容护肤保养品与美容院为主，集研发、生产一体的企业。......</div>
-            <div class="more"><a href="">MORE</a></div>
+            <div class="des"><?php echo isset($culture['column_content']) ? mb_substr($culture['column_content'],0,40,'utf-8'): '暂无内容！'; ?>....</div>
+            <div class="more"><a href="{:U('Info/index', array('id' => C('CONTENT_CULTURE')))}">MORE</a></div>
         </li>
         <li>
-            <a href="">
+            <a href="{:U('Info/index', array('id' => C('CONTENT_INTRODUCE')))}">
                 <img src="__PUBLIC__/static/pic3.jpg" alt=""/>
             </a>
             <div class="title">
-                <a href=""><em>03.</em>工作方案</a>
+                <a href="{:U('Info/index', array('id' => C('CONTENT_INTRODUCE')))}"><em>03.</em><?php echo $about['column_name']; ?></a>
             </div>
-            <div class="des">以传播美丽之道为目标，是一家以美容护肤保养品与美容院为主，集研发、生产一体的企业。......</div>
-            <div class="more"><a href="">MORE</a></div>
+            <div class="des"><?php echo isset($about['column_content']) ? mb_substr($about['column_content'],0,40,'utf-8'): '暂无内容！'; ?>.....</div>
+            <div class="more"><a href="{:U('Info/index', array('id' => C('CONTENT_INTRODUCE')))}">MORE</a></div>
         </li>
         <li>
-            <a href="">
+            <a href="{:U('Info/index', array('id' => C('CONTENT_HEALTHY')))}">
                 <img src="__PUBLIC__/static/pic4.jpg" alt=""/>
             </a>
             <div class="title">
-                <a href=""><em>04.</em>产品中心</a>
+                <a href="{:U('Info/index', array('id' => C('CONTENT_HEALTHY')))}"><em>04.</em><?php echo $healthy['column_name']; ?></a>
             </div>
-            <div class="des">以传播美丽之道为目标，是一家以美容护肤保养品与美容院为主，集研发、生产一体的企业。......</div>
-            <div class="more"><a href="">MORE</a></div>
+            <div class="des"><?php echo isset($healthy['column_content']) ? mb_substr($healthy['column_content'],0,40,'utf-8'): '暂无内容！'; ?>.....</div>
+            <div class="more"><a href="{:U('Info/index', array('id' => C('CONTENT_HEALTHY')))}">MORE</a></div>
         </li>
     </ul>
 </div>
@@ -101,37 +101,37 @@
         <span class="title_line clearfix"> 产品中心</span>
         <div class="left_new clearfix">
             <div class="pic">
-                <a href="about.html">
+                <a href="{:U('Info/index', array('id' => C('CONTENT_HEALTHY')))}">
                     <img src="__PUBLIC__/static/about1.jpg" alt="" class="vcenter"/>
                 <i></i></a>
             </div>
             <div class="text">
-                <h4>上海唯星信息科技有限公司</h4>
-                <p>唯星成立于2005年，秉承"整合数字资源,技术驱动营销"的理念为传统企业互联网商业转型各个阶段提供全方位应用支撑。经过10余年的快速发展，唯星深刻理解...……</p>
-                <a href="about.html">查看详细 >></a>
+                <h4><?php echo $healthy['column_name']; ?></h4>
+                <p><?php echo isset($healthy['column_content']) ? mb_substr($healthy['column_content'],0,80,'utf-8'): '暂无内容！'; ?></p>
+                <a href="{:U('Info/index', array('id' => C('CONTENT_HEALTHY')))}">查看详细 >></a>
             </div>
         </div>
         <ul  class="right_new">
             <li>
-                <a href="news.html">
+                <a href="{:U('Info/index', array('id' => C('CONTENT_FACE')))}">
                     <div class="pic"><img src="__PUBLIC__/static/news1.jpg" alt="" class="vcenter"/><i></i></div>
                     <div class="text">
-                        <h4>SaaS级智能营销云平台</h4>
+                        <h4><?php echo $face['column_name']; ?></h4>
                         <time>[201610-08]</time>
                         <p>
-                            SaaS级智能营销云平台的核心模块是唯星大数据精准营销平台.....
+                            <?php echo isset($face['column_content']) ? mb_substr($face['column_content'],0,150,'utf-8'): '暂无内容！'; ?>
                         </p>
                     </div>
                 </a>
             </li>
             <li>
-                <a href="news.html">
+                <a href="{:U('Info/index', array('id' => C('CONTENT_BODY')))}">
                     <div class="pic"><img src="__PUBLIC__/static/news2.jpg" alt="" class="vcenter"/><i></i></div>
                     <div class="text">
-                        <h4>SaaS级智能营销云平台</h4>
+                        <h4><?php echo $body['column_name']; ?></h4>
                         <time>[201610-08]</time>
                         <p>
-                            SaaS级智能营销云平台的核心模块是唯星大数据精准营销平台.....
+                            <?php echo isset($body['column_content']) ? mb_substr($body['column_content'],0,150,'utf-8'): '暂无内容！'; ?>
                         </p>
                     </div>
                 </a>
