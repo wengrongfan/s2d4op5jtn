@@ -24,6 +24,7 @@ class IndexController extends BaseController {
         $about['column_content'] = $this->fitld($about,'column_content');
 
         //首页栏目资讯
+        $column = array();
         $temp_column = D('column')->where(array('column_open' => 1))->select();
         foreach ($temp_column as $value){
             $column[$value['c_id']] =$value;
@@ -32,7 +33,7 @@ class IndexController extends BaseController {
 
         //首页新闻动态
 		$c_ids = array();
-		$columns = D('column')->where(array('column_leftid' => C('MENU_NEWS'), 'column_open' => 1))->field('	c_id')->select();
+		$columns = D('column')->where(array('column_leftid' => C('MENU_NEWS'), 'column_open' => 1))->field('c_id')->select();
 
 		if( ! empty($columns))
 		{
@@ -64,7 +65,7 @@ class IndexController extends BaseController {
      * @param $content
      * @param $num  为1的时候过滤单条信息
      */
-	public function fitld($list='',$des,$content='',$num=0)
+	private function fitld($list='',$des,$content='',$num=0)
     {
         if ($num == 1){
             if (empty($content)){
@@ -80,29 +81,4 @@ class IndexController extends BaseController {
         return $name;
 
     }
-
-    /*public function about()
-    {
-        $this->display('main/about');
-    }
-
-    public function team()
-    {
-        $this->display('main/team');
-    }
-
-    public function news()
-    {
-        $this->display('main/news');
-    }
-
-    public function service()
-    {
-        $this->display('main/service');
-    }
-
-    public function contact()
-    {
-        $this->display('main/contact');
-    }*/
 }
