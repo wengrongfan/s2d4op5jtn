@@ -528,7 +528,8 @@ div.scrollbar_dragger.horizontal{ display:none;}
   /*display: inline-block;*/
   float: left;
   margin-top: 10px;
-  padding-right: 1%;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
 }
 .index-main-md-body ul li div {
   width: 100%;

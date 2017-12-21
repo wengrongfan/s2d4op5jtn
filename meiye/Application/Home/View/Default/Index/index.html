@@ -26,9 +26,9 @@
                         <ul>
                             <foreach name="news_list" item="v">
                             <li>
-                                <div class="time"><?php echo date('Y-d-m H:i', $v['news_time']); ?></div>
+                                <div class="time"><?php echo date('Y-m-d H:i', $v['news_time']); ?></div>
                                 <div class="title">
-                                    <a href=""><?php echo ! empty($v['news_titleshort']) ? subtext($v['news_titleshort'], 35) : subtext($v['news_title'], 35); ?></a>
+                                    <a href="{:U('Info/view', array('id' => $v['n_id']))}"><?php echo ! empty($v['news_titleshort']) ? subtext($v['news_titleshort'], 35) : subtext($v['news_title'], 35); ?></a>
                                 </div>
                             </li>
                             </foreach>
@@ -86,7 +86,7 @@
         </li>
         <li>
             <a href="{:U('Info/index', array('id' => C('CONTENT_HEALTHY')))}">
-                <img src="__PUBLIC__/static/pic4.jpg" alt=""/>
+                <img src="__PUBLIC__/static/pic6.jpg" alt=""/>
             </a>
             <div class="title">
                 <a href="{:U('Info/index', array('id' => C('CONTENT_HEALTHY')))}"><em>04.</em><?php echo $healthy['column_name']; ?></a>

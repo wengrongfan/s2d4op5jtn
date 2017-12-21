@@ -13,16 +13,23 @@
         <p>团队成员</p>
         <span>专业的团队、专业的技术</span>
     </div>
+    <?php
+        $color = array('#96c2f1', '#9bdf70', '#bbe1f1', '#cceff5', '#ffcc00', '#cee3e9', '#a9c9e2',
+            '#e3e197', '#adcd3c', '#bfd1eb', '#a5b6c8');
+        $seed = count($color);
+    ?>
     <div class="index-main-md-body">
         <ul>
             <foreach name="staff_list" item="v">
+                <?php $index = mt_rand(0, $seed); ?>
                 <li>
-                    <div class="team_cy"><img width="250" height="200" src="__PUBLIC__{$v.staff_pic}"></div>
-                    <p class="name">{$v.staff_name}</p>
+                    <div class="team_cy" style="border:1px solid <?php echo $color[$index]; ?>;"><img src="__PUBLIC__{$v.staff_pic}"></div>
+                    <p class="name" style="background:<?php echo $color[$index]; ?>;">{$v.staff_name}</p>
                     <p>{$v.staff_position}</p>
                     <span style="margin-top: 0.5rem;color:#555;">{$v.staff_description}</span>
                 </li>
             </foreach>
+            <ul style="clear: both;"></ul>
         </ul>
     </div>
     </div>
