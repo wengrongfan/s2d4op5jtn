@@ -54,7 +54,7 @@ class InfoController extends BaseController {
                 $this->list_view($column['c_id']);
                 break;
             default:
-                $this->display('main/about');
+                $this->display('Main/about');
                 break;
         }
     }
@@ -97,7 +97,7 @@ class InfoController extends BaseController {
         }
 
         $this->assign('id2name', $id2name);
-        $this->display('main/news');
+        $this->display('Main/news');
     }
 
     public function view($id)
@@ -119,6 +119,6 @@ class InfoController extends BaseController {
         $this->assign('last', $last);
         $this->assign('menu_id', $news['news_columnid']);
         $this->assign('news', $news);
-        $this->display('main/news_detail');
+        $this->display('Main/news_detail');
     }
 }
