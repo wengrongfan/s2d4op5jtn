@@ -19,6 +19,6 @@ class TeamController extends BaseController {
 
         $this->assign('staff_list', $staff_list);
         $this->assign('menu_id', $id);
-        $this->display('main/team');
+        $this->display('Main/team');
     }
 }
