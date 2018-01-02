@@ -10,7 +10,7 @@
 <div class="space_hx">&nbsp;</div>
     <div class="wrap scd clearfix">
         <div class="scd_l">
-            <div class="s_top"><span>关于云绣</span></div>
+            <div class="s_top"><span><?php echo $_SESSION['m_name']; ?></span></div>
             <?php $menu = isset($menu_tree[$p_id]) ? $menu_tree[$p_id] : ''; ?>
             <?php $choose = ''; ?>
             <ul class="s_nav">

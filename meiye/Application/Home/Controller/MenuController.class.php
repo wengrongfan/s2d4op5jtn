@@ -49,6 +49,9 @@ class MenuController extends Controller {
             case C('MENU_TEAM'):
                 $this->redirect('Team/index', array('id' => $id));
                 break;
+            case C('MENU_TRAIN'):
+                $this->redirect('Info/index', array('id' => $id));
+                break;
             default :
                 //余下可按类型分发
                 $this->error('不支持的菜单！');

@@ -12,6 +12,7 @@ return array (
 'MENU_SERVICES' => 9,
 'MENU_CONTACT' => 13,
 'MENU_TEAM' => 14,
+'MENU_TRAIN' => 15,
 
 'CONTENT_INTRODUCE' => 2,
 'CONTENT_CULTURE' => 3,
