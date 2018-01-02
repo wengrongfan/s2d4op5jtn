@@ -107,7 +107,7 @@
             </div>
             <div class="text">
                 <h4><?php echo $healthy['column_name']; ?></h4>
-                <p><?php echo isset($healthy['column_content']) ? mb_substr($healthy['column_content'],0,80,'utf-8'): '暂无内容！'; ?></p>
+                <p><?php echo isset($healthy['column_content']) ? mb_substr($healthy['column_content'],0,125,'utf-8'): '暂无内容！'; ?></p>
                 <a href="{:U('Info/index', array('id' => C('CONTENT_HEALTHY')))}">查看详细 >></a>
             </div>
         </div>
